@@ -163,7 +163,7 @@ button{
       Firebase Email/Password দিয়ে লগইন করুন।
     </p>
 
-    <input
+    <input ঋদ্ধ
       id="email"
       type="email"
       placeholder="Admin Email"
@@ -175,7 +175,7 @@ button{
       placeholder="Password"
     >
 
-    <button class="primary" onclick="document.getElementById('loginStatus').innerText='Button কাজ করছে'">
+    <button class="primary" onclick="login()">
       Login
     </button>
 
@@ -437,40 +437,38 @@ auth.onAuthStateChanged(function(user){
 ========================= */
 
 function login(){
+  const status = document.getElementById("loginStatus");
 
-  const email =
-    document.getElementById("email").value.trim();
+  try {
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
 
-  const password =
-    document.getElementById("password").value;
+    if(!email || !password){
+      status.innerText = "Email ও Password দিন।";
+      return;
+    }
 
-  if(!email || !password){
+    status.innerText = "Login হচ্ছে...";
 
-    document.getElementById("loginStatus")
-      .innerText = "Email ও Password দিন।";
+    if(typeof auth === "undefined" || !auth){
+      status.innerText = "Firebase Auth চালু হয়নি।";
+      return;
+    }
 
-    return;
+    auth.signInWithEmailAndPassword(email,password)
+      .then(function(){
+        status.innerText = "Login সফল হয়েছে।";
+      })
+      .catch(function(error){
+        status.innerText =
+          "Login সমস্যা: " + (error.code || "") + " — " + error.message;
+      });
+
+  } catch(error) {
+    status.innerText =
+      "JavaScript সমস্যা: " + error.message;
   }
-
-  auth.signInWithEmailAndPassword(email,password)
-
-    .then(function(){
-
-      document.getElementById("loginStatus")
-        .innerText = "Login সফল হয়েছে।";
-
-    })
-
-    .catch(function(error){
-
-      document.getElementById("loginStatus")
-        .innerText =
-        "Login সমস্যা: " + error.message;
-
-    });
-
 }
-
 
 /* =========================
    LOGOUT
