@@ -1552,48 +1552,61 @@ function saveProduct(){
 /* =====================================================
    WEIGHT PARSER
 ===================================================== */
-
 function parseWeight(value){
 
-  value =
-    String(value)
-      .toLowerCase()
-      .trim();
+  value = String(value || "")
+    .toLowerCase()
+    .trim();
 
+  // বাংলা সংখ্যা → ইংরেজি সংখ্যা
+  const normalized = value
+    .replace(/[০-৯]/g, function(d){
+      return "০১২৩৪৫৬৭৮৯".indexOf(d);
+    })
+    .replace(/গ্রাম/g, "g")
+    .replace(/কেজি/g, "kg")
+    .replace(/মিলি/g, "ml")
+    .replace(/লিটার/g, "l");
 
-  if(value.includes("kg")){
+  // KG
+  if(normalized.includes("kg")){
+    const n = parseFloat(
+      normalized.replace("kg", "").trim()
+    );
 
-    const n =
-      parseFloat(
-        value.replace("kg","")
-      );
-
-
-    return isNaN(n)
-      ? 0
-      : n * 1000;
-
+    return isNaN(n) ? 0 : n * 1000;
   }
 
+  // ML
+  if(normalized.includes("ml")){
+    const n = parseFloat(
+      normalized.replace("ml", "").trim()
+    );
 
-  if(value.includes("g")){
-
-    const n =
-      parseFloat(
-        value.replace("g","")
-      );
-
-
-    return isNaN(n)
-      ? 0
-      : n;
-
+    return isNaN(n) ? 0 : n;
   }
 
+  // LITER
+  if(normalized.includes("l")){
+    const n = parseFloat(
+      normalized.replace("l", "").trim()
+    );
+
+    return isNaN(n) ? 0 : n * 1000;
+  }
+
+  // GRAM
+  if(normalized.includes("g")){
+    const n = parseFloat(
+      normalized.replace("g", "").trim()
+    );
+
+    return isNaN(n) ? 0 : n;
+  }
 
   return 0;
-
 }
+
 
 
 
