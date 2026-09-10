@@ -24,13 +24,14 @@ scroll-behavior:smooth;
 body{
 margin:0;
 font-family:system-ui,-apple-system,"Noto Sans Bengali","Segoe UI",sans-serif;
-background:#f6faf7;
+background:#f5faf7;
 color:#17221a;
 }
 
 button,
 input,
-select{
+select,
+textarea{
 font-family:inherit;
 }
 
@@ -38,16 +39,19 @@ button{
 cursor:pointer;
 }
 
-/* =========================
-   HEADER
-========================= */
+button:disabled{
+cursor:not-allowed;
+opacity:.55;
+}
+
+/* ================= HEADER ================= */
 
 header{
 position:sticky;
 top:0;
 z-index:50;
-background:rgba(7,105,61,.96);
-backdrop-filter:blur(12px);
+background:rgba(7,105,61,.97);
+backdrop-filter:blur(14px);
 color:white;
 box-shadow:0 5px 25px #0002;
 }
@@ -55,29 +59,29 @@ box-shadow:0 5px 25px #0002;
 .header-inner{
 max-width:1250px;
 margin:auto;
-padding:13px 20px;
+padding:11px 18px;
 display:flex;
 align-items:center;
 justify-content:space-between;
-gap:15px;
+gap:12px;
 }
 
 .brand{
 display:flex;
 align-items:center;
-gap:11px;
+gap:10px;
 min-width:0;
 }
 
 .brand-icon{
-width:46px;
-height:46px;
-border-radius:14px;
+width:44px;
+height:44px;
+border-radius:13px;
 background:#ffffff18;
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:25px;
+font-size:23px;
 flex-shrink:0;
 }
 
@@ -86,120 +90,131 @@ min-width:0;
 }
 
 .logo{
-font-size:22px;
-font-weight:900;
+font-size:21px;
+font-weight:950;
 line-height:1.2;
 white-space:nowrap;
 }
 
 .tagline{
-font-size:11px;
-opacity:.85;
+font-size:10px;
+opacity:.82;
 margin-top:3px;
 white-space:nowrap;
 overflow:hidden;
 text-overflow:ellipsis;
-max-width:550px;
+max-width:520px;
 }
 
 .cart-btn{
+position:relative;
 border:0;
 background:white;
 color:#087443;
 border-radius:999px;
 padding:10px 15px;
-font-weight:900;
-font-size:14px;
-box-shadow:0 3px 10px #0002;
+font-weight:950;
+font-size:13px;
 white-space:nowrap;
+box-shadow:0 4px 12px #0002;
 }
 
 .cart-btn:active{
 transform:scale(.96);
 }
 
-/* =========================
-   HERO
-========================= */
+.cart-number{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+min-width:21px;
+height:21px;
+padding:0 5px;
+border-radius:50px;
+background:#e53935;
+color:white;
+font-size:11px;
+font-weight:950;
+margin-left:3px;
+animation:none;
+}
+
+.cart-number.bump{
+animation:bump .35s ease;
+}
+
+@keyframes bump{
+0%{transform:scale(1)}
+50%{transform:scale(1.4)}
+100%{transform:scale(1)}
+}
+
+/* ================= HERO ================= */
 
 .hero{
 max-width:1250px;
-margin:22px auto 0;
-padding:0 20px;
+margin:18px auto 0;
+padding:0 18px;
 }
 
 .hero-box{
 position:relative;
 overflow:hidden;
-border-radius:28px;
-padding:42px 42px 38px;
+border-radius:27px;
+padding:42px;
 background:
-radial-gradient(circle at 90% 10%,#b9f3ce 0,transparent 30%),
-linear-gradient(135deg,#e4f8eb,#ffffff);
-border:1px solid #d8eee0;
-box-shadow:0 10px 35px #0d6b3d0c;
-}
-
-.hero-box:after{
-content:"";
-position:absolute;
-width:220px;
-height:220px;
-right:-70px;
-bottom:-100px;
-border-radius:50%;
-background:#0d6b3d0b;
+radial-gradient(circle at 92% 10%,#baf3ce 0,transparent 31%),
+linear-gradient(135deg,#e2f8ea,#fff);
+border:1px solid #d5ecdc;
+box-shadow:0 10px 35px #0d6b3d0d;
 }
 
 .hero-content{
 position:relative;
 z-index:2;
-max-width:800px;
+max-width:820px;
 }
 
 .hero-kicker{
 display:inline-flex;
-align-items:center;
-gap:6px;
-background:#ffffffb8;
-border:1px solid #d1ead9;
+background:#ffffffc9;
+border:1px solid #d2eadd;
 color:#087443;
 padding:7px 12px;
 border-radius:999px;
-font-size:13px;
-font-weight:800;
-margin-bottom:14px;
+font-size:12px;
+font-weight:900;
+margin-bottom:13px;
 }
 
 .hero h1{
 margin:0;
-font-size:clamp(31px,6vw,54px);
-line-height:1.15;
+font-size:clamp(31px,6vw,55px);
+line-height:1.13;
 letter-spacing:-1px;
 color:#08683d;
 }
 
 .hero p{
 margin:13px 0 0;
-font-size:17px;
+font-size:16px;
 line-height:1.8;
-color:#425148;
+color:#435149;
 }
 
 .delivery-info{
 display:flex;
 flex-wrap:wrap;
-gap:9px;
-margin-top:22px;
+gap:8px;
+margin-top:20px;
 }
 
 .delivery-pill{
 background:white;
 border:1px solid #d8e9de;
-padding:9px 13px;
-border-radius:12px;
-font-size:13px;
-color:#34433a;
+padding:8px 12px;
+border-radius:11px;
+font-size:12px;
 box-shadow:0 3px 12px #00000008;
 }
 
@@ -207,90 +222,85 @@ box-shadow:0 3px 12px #00000008;
 color:#087443;
 }
 
-/* =========================
-   QUICK FEATURES
-========================= */
+/* ================= FEATURES ================= */
 
 .features{
 max-width:1250px;
-margin:18px auto;
-padding:0 20px;
+margin:16px auto;
+padding:0 18px;
 display:grid;
 grid-template-columns:repeat(4,1fr);
-gap:12px;
+gap:10px;
 }
 
 .feature{
 background:white;
-border:1px solid #e2ebe5;
+border:1px solid #e1ebe4;
 border-radius:16px;
-padding:14px;
+padding:13px;
 display:flex;
 align-items:center;
-gap:11px;
+gap:10px;
 box-shadow:0 4px 16px #183d2610;
 }
 
 .feature-icon{
-width:40px;
-height:40px;
+width:39px;
+height:39px;
 border-radius:12px;
 background:#eaf8ef;
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:20px;
+font-size:19px;
 flex-shrink:0;
 }
 
 .feature b{
-font-size:13px;
 display:block;
+font-size:13px;
 }
 
 .feature span{
-font-size:11px;
+display:block;
+font-size:10px;
 color:#758078;
+margin-top:2px;
 }
 
-/* =========================
-   SECTION
-========================= */
+/* ================= SECTION ================= */
 
 .section{
 max-width:1250px;
-margin:30px auto 0;
-padding:0 20px;
+margin:28px auto 0;
+padding:0 18px;
 }
 
 .section-heading{
 display:flex;
 align-items:end;
 justify-content:space-between;
-gap:15px;
-margin-bottom:15px;
+margin-bottom:14px;
 }
 
 .section-title{
 margin:0;
-font-size:25px;
+font-size:24px;
 color:#173126;
 }
 
 .section-subtitle{
-font-size:13px;
+font-size:12px;
 color:#7a867e;
 margin-top:4px;
 }
 
-/* =========================
-   CONTROLS
-========================= */
+/* ================= CONTROLS ================= */
 
 .controls{
 display:flex;
-gap:10px;
-margin-bottom:20px;
+gap:9px;
+margin-bottom:18px;
 }
 
 .search-box{
@@ -309,12 +319,13 @@ color:#718078;
 
 .search-box input{
 width:100%;
-padding:14px 15px 14px 43px;
+height:48px;
+padding:12px 14px 12px 42px;
 border:1px solid #dce7df;
-border-radius:14px;
+border-radius:13px;
 background:white;
 outline:none;
-font-size:15px;
+font-size:14px;
 box-shadow:0 3px 12px #183d2608;
 }
 
@@ -324,24 +335,23 @@ box-shadow:0 0 0 3px #45a66f18;
 }
 
 .category{
+height:48px;
 min-width:180px;
-padding:0 13px;
+padding:0 12px;
 border:1px solid #dce7df;
-border-radius:14px;
+border-radius:13px;
 background:white;
 outline:none;
-font-size:14px;
+font-size:13px;
 }
 
-/* =========================
-   FEATURED
-========================= */
+/* ================= FEATURED ================= */
 
 .featured-scroll{
 display:flex;
-gap:13px;
+gap:12px;
 overflow-x:auto;
-padding:3px 2px 12px;
+padding:2px 2px 12px;
 scrollbar-width:none;
 }
 
@@ -350,16 +360,16 @@ display:none;
 }
 
 .featured-item{
-min-width:245px;
+min-width:235px;
 background:white;
 border:1px solid #e1ebe4;
-border-radius:18px;
+border-radius:17px;
 overflow:hidden;
 box-shadow:0 5px 18px #183d2610;
 }
 
 .featured-img{
-height:145px;
+height:135px;
 width:100%;
 object-fit:cover;
 display:block;
@@ -367,53 +377,50 @@ background:#edf4ef;
 }
 
 .featured-body{
-padding:12px;
+padding:11px;
 }
 
 .featured-name{
-font-weight:850;
-font-size:15px;
-line-height:1.45;
-min-height:43px;
+font-weight:900;
+font-size:14px;
+line-height:1.4;
+min-height:40px;
 }
 
 .featured-price{
 color:#087443;
-font-weight:900;
-font-size:17px;
+font-weight:950;
+font-size:16px;
 margin-top:5px;
 }
 
-/* =========================
-   PRODUCTS GRID
-========================= */
+/* ================= PRODUCTS ================= */
 
 .grid{
 display:grid;
 grid-template-columns:repeat(4,minmax(0,1fr));
-gap:18px;
+gap:17px;
 padding-bottom:50px;
 }
 
 .card{
 background:white;
 border:1px solid #e0e9e3;
-border-radius:20px;
+border-radius:19px;
 overflow:hidden;
 display:flex;
 flex-direction:column;
 box-shadow:0 6px 24px #163d2410;
 transition:.2s ease;
-position:relative;
 }
 
 .card:hover{
-transform:translateY(-4px);
+transform:translateY(-3px);
 box-shadow:0 13px 32px #163d2420;
 }
 
 .product-image-wrap{
-height:220px;
+height:215px;
 position:relative;
 overflow:hidden;
 background:#edf4ef;
@@ -424,7 +431,7 @@ width:100%;
 height:100%;
 object-fit:cover;
 display:block;
-transition:.3s ease;
+transition:.3s;
 }
 
 .card:hover .product-image{
@@ -433,28 +440,27 @@ transform:scale(1.04);
 
 .badge{
 position:absolute;
-left:11px;
-top:11px;
-background:#ffffffec;
+left:10px;
+top:10px;
+background:#ffffffed;
 color:#087443;
 border:1px solid #d8eadf;
 border-radius:999px;
-padding:6px 9px;
-font-size:11px;
-font-weight:900;
-box-shadow:0 3px 10px #0002;
+padding:5px 8px;
+font-size:10px;
+font-weight:950;
 }
 
 .stock{
 position:absolute;
-right:11px;
-top:11px;
+right:10px;
+top:10px;
 background:#087443;
 color:white;
 border-radius:999px;
-padding:6px 9px;
-font-size:10px;
-font-weight:800;
+padding:5px 8px;
+font-size:9px;
+font-weight:900;
 }
 
 .out-stock{
@@ -462,28 +468,27 @@ background:#b42318;
 }
 
 .card-body{
-padding:15px;
+padding:14px;
 display:flex;
 flex-direction:column;
-gap:8px;
+gap:7px;
 flex:1;
 }
 
 .product-name{
-font-size:17px;
-font-weight:850;
+font-size:16px;
+font-weight:900;
 line-height:1.45;
-color:#17221a;
 }
 
 .origin{
-font-size:12px;
+font-size:11px;
 color:#748078;
 }
 
 .rating{
-font-size:12px;
-color:#56645b;
+font-size:11px;
+color:#657068;
 }
 
 .rating strong{
@@ -494,29 +499,28 @@ color:#e19a00;
 display:flex;
 align-items:center;
 gap:6px;
-margin-top:2px;
 }
 
 .price{
-font-size:21px;
+font-size:20px;
 font-weight:950;
 color:#087443;
 }
 
 .old-price{
-font-size:12px;
+font-size:11px;
 color:#9a9f9b;
 text-decoration:line-through;
 }
 
 .weight{
-font-size:12px;
+font-size:11px;
 color:#7a847d;
 }
 
 .card-actions{
 display:flex;
-gap:7px;
+gap:6px;
 margin-top:auto;
 padding-top:5px;
 }
@@ -525,21 +529,21 @@ padding-top:5px;
 border:0;
 background:#087443;
 color:white;
-font-weight:850;
-border-radius:11px;
-padding:11px 10px;
+font-weight:900;
+border-radius:10px;
+padding:10px 8px;
 flex:1;
-font-size:13px;
+font-size:12px;
 }
 
 .details-btn{
 border:1px solid #cfe0d5;
 background:#f5faf7;
 color:#087443;
-font-weight:800;
-border-radius:11px;
-padding:10px 11px;
-font-size:13px;
+font-weight:850;
+border-radius:10px;
+padding:9px 10px;
+font-size:12px;
 }
 
 .add-btn:active,
@@ -552,20 +556,27 @@ grid-column:1/-1;
 background:white;
 border:1px dashed #cbdacf;
 border-radius:18px;
-padding:60px 20px;
+padding:55px 20px;
 text-align:center;
 color:#68756d;
 }
 
-/* =========================
-   FOOTER
-========================= */
+.loading{
+grid-column:1/-1;
+background:white;
+border-radius:18px;
+padding:55px;
+text-align:center;
+color:#68756d;
+}
+
+/* ================= FOOTER ================= */
 
 footer{
 background:#10251b;
 color:#dce8df;
 margin-top:20px;
-padding:42px 20px 90px;
+padding:40px 18px 85px;
 }
 
 .footer-inner{
@@ -573,46 +584,44 @@ max-width:1250px;
 margin:auto;
 display:grid;
 grid-template-columns:1.5fr 1fr 1fr;
-gap:35px;
+gap:30px;
 }
 
 .footer-logo{
-font-size:22px;
-font-weight:900;
+font-size:21px;
+font-weight:950;
 color:white;
 }
 
 .footer-text{
-font-size:13px;
+font-size:12px;
 line-height:1.8;
 color:#aebdb4;
 margin-top:8px;
 }
 
 .footer-title{
-font-weight:850;
+font-weight:900;
 color:white;
-margin-bottom:10px;
+margin-bottom:8px;
 }
 
 .footer-line{
-font-size:13px;
+font-size:12px;
 line-height:2;
 color:#b8c7bf;
 }
 
 .footer-bottom{
 max-width:1250px;
-margin:28px auto 0;
-padding-top:18px;
+margin:25px auto 0;
+padding-top:16px;
 border-top:1px solid #ffffff15;
-font-size:12px;
+font-size:11px;
 color:#829289;
 }
 
-/* =========================
-   MODAL
-========================= */
+/* ================= MODAL ================= */
 
 .modal{
 display:none;
@@ -621,7 +630,7 @@ inset:0;
 z-index:100;
 background:#06130ccc;
 backdrop-filter:blur(5px);
-padding:15px;
+padding:12px;
 align-items:center;
 justify-content:center;
 }
@@ -632,10 +641,10 @@ display:flex;
 
 .modal-box{
 background:white;
-border-radius:22px;
+border-radius:21px;
 width:100%;
-max-width:520px;
-max-height:92vh;
+max-width:530px;
+max-height:93vh;
 overflow:auto;
 box-shadow:0 25px 80px #0005;
 animation:pop .18s ease;
@@ -653,12 +662,11 @@ opacity:1;
 }
 
 .modal-head{
-padding:18px 20px;
+padding:16px 18px;
 border-bottom:1px solid #edf1ee;
 display:flex;
 align-items:center;
 justify-content:space-between;
-gap:10px;
 position:sticky;
 top:0;
 background:white;
@@ -667,25 +675,23 @@ z-index:2;
 
 .modal-head h2{
 margin:0;
-font-size:20px;
+font-size:19px;
 }
 
 .close{
 border:0;
 background:#eef3ef;
-width:36px;
-height:36px;
+width:35px;
+height:35px;
 border-radius:50%;
-font-size:17px;
+font-size:16px;
 }
 
 .modal-content{
-padding:18px 20px 22px;
+padding:17px 18px 20px;
 }
 
-/* =========================
-   CART
-========================= */
+/* ================= CART ================= */
 
 .cart-row{
 display:flex;
@@ -700,12 +706,12 @@ flex:1;
 
 .cart-name{
 font-size:14px;
-font-weight:850;
+font-weight:900;
 line-height:1.45;
 }
 
 .cart-meta{
-font-size:12px;
+font-size:11px;
 color:#7a847e;
 margin-top:3px;
 }
@@ -729,27 +735,27 @@ background:#f6faf7;
 width:28px;
 height:28px;
 border-radius:8px;
-font-weight:900;
+font-weight:950;
 }
 
 .qty span{
 min-width:20px;
 text-align:center;
-font-weight:800;
+font-weight:850;
 }
 
 .cart-summary{
-margin-top:16px;
+margin-top:15px;
 background:#f3f8f4;
-border-radius:15px;
-padding:14px;
+border-radius:14px;
+padding:13px;
 }
 
 .summary-line{
 display:flex;
 justify-content:space-between;
 padding:5px 0;
-font-size:14px;
+font-size:13px;
 }
 
 .summary-total{
@@ -761,80 +767,101 @@ font-weight:950;
 color:#087443;
 }
 
+.order-form{
+margin-top:15px;
+display:grid;
+gap:9px;
+}
+
+.order-form input,
+.order-form textarea,
+.order-form select{
+width:100%;
+border:1px solid #dce7df;
+border-radius:11px;
+padding:11px 12px;
+font-size:13px;
+outline:none;
+background:white;
+}
+
+.order-form textarea{
+min-height:75px;
+resize:vertical;
+}
+
 .notice{
 background:#fff8df;
 border:1px solid #f0dfa0;
-border-radius:12px;
-padding:11px;
-font-size:12px;
+border-radius:11px;
+padding:10px;
+font-size:11px;
 line-height:1.6;
-margin-top:13px;
+margin-top:12px;
 }
 
 .whatsapp{
 width:100%;
 border:0;
-border-radius:13px;
+border-radius:12px;
 padding:13px;
-margin-top:12px;
+margin-top:11px;
 background:#159447;
 color:white;
-font-weight:900;
-font-size:15px;
+font-weight:950;
+font-size:14px;
 }
 
-/* =========================
-   PRODUCT DETAILS
-========================= */
+/* ================= DETAILS ================= */
 
 .detail-img{
 width:100%;
-height:230px;
+height:235px;
 object-fit:cover;
-border-radius:15px;
+border-radius:14px;
 background:#edf4ef;
 }
 
 .detail-name{
-font-size:23px;
-font-weight:900;
+font-size:22px;
+font-weight:950;
 line-height:1.4;
-margin:14px 0 5px;
+margin:13px 0 5px;
 }
 
 .detail-origin{
-font-size:13px;
+font-size:12px;
 color:#727e76;
 }
 
 .detail-desc{
-font-size:14px;
+font-size:13px;
 line-height:1.8;
 color:#4d5b52;
-margin-top:13px;
+margin-top:12px;
 }
 
 .features-list{
 padding-left:20px;
 line-height:1.8;
-font-size:13px;
+font-size:12px;
 color:#536057;
 }
 
 .weight-options{
 display:flex;
-gap:8px;
+gap:7px;
 flex-wrap:wrap;
-margin-top:10px;
+margin-top:9px;
 }
 
 .weight-option{
 border:1px solid #d4e2d8;
 background:#f6faf7;
-border-radius:11px;
-padding:9px 11px;
-font-size:12px;
-font-weight:800;
+border-radius:10px;
+padding:8px 10px;
+font-size:11px;
+font-weight:850;
 }
 
 .weight-option.active{
@@ -843,9 +870,7 @@ background:#e9f7ee;
 color:#087443;
 }
 
-/* =========================
-   MOBILE NAV
-========================= */
+/* ================= MOBILE NAV ================= */
 
 .mobile-nav{
 display:none;
@@ -870,105 +895,99 @@ grid-template-columns:1fr 1fr;
 @media(max-width:700px){
 
 .header-inner{
-padding:11px 12px;
+padding:10px 11px;
 }
 
 .brand-icon{
-width:40px;
-height:40px;
-font-size:21px;
-border-radius:12px;
+width:39px;
+height:39px;
+font-size:20px;
 }
 
 .logo{
-font-size:18px;
-}
-
-.tagline{
-font-size:9px;
-max-width:230px;
-}
-
-.cart-btn{
-padding:9px 12px;
-font-size:12px;
-}
-
-.hero{
-padding:0 12px;
-margin-top:12px;
-}
-
-.hero-box{
-padding:27px 21px;
-border-radius:21px;
-}
-
-.hero h1{
-font-size:32px;
-}
-
-.hero p{
-font-size:14px;
-line-height:1.75;
-}
-
-.delivery-info{
-gap:6px;
-}
-
-.delivery-pill{
-font-size:11px;
-padding:7px 9px;
-}
-
-.features{
-padding:0 12px;
-grid-template-columns:repeat(2,1fr);
-gap:8px;
-}
-
-.feature{
-padding:10px;
-gap:7px;
-}
-
-.feature-icon{
-width:34px;
-height:34px;
 font-size:17px;
 }
 
-.feature b{
+.tagline{
+font-size:8px;
+max-width:220px;
+}
+
+.cart-btn{
+padding:8px 10px;
 font-size:11px;
 }
 
+.hero{
+padding:0 11px;
+margin-top:11px;
+}
+
+.hero-box{
+padding:27px 19px;
+border-radius:20px;
+}
+
+.hero h1{
+font-size:31px;
+}
+
+.hero p{
+font-size:13px;
+line-height:1.75;
+}
+
+.delivery-pill{
+font-size:10px;
+padding:7px 8px;
+}
+
+.features{
+padding:0 11px;
+grid-template-columns:repeat(2,1fr);
+gap:7px;
+}
+
+.feature{
+padding:9px;
+gap:6px;
+}
+
+.feature-icon{
+width:32px;
+height:32px;
+font-size:16px;
+}
+
+.feature b{
+font-size:10px;
+}
+
 .feature span{
-font-size:9px;
+font-size:8px;
 }
 
 .section{
-padding:0 12px;
-margin-top:23px;
+padding:0 11px;
+margin-top:22px;
 }
 
 .section-title{
-font-size:21px;
+font-size:20px;
 }
 
 .controls{
 display:grid;
 grid-template-columns:1fr;
-gap:8px;
 }
 
 .category{
-height:46px;
+width:100%;
 }
 
 .grid{
 grid-template-columns:repeat(2,minmax(0,1fr));
-gap:10px;
+gap:9px;
 }
 
 .product-image-wrap{
@@ -976,71 +995,59 @@ height:145px;
 }
 
 .card{
-border-radius:15px;
+border-radius:14px;
 }
 
 .card-body{
-padding:10px;
-gap:6px;
+padding:9px;
+gap:5px;
 }
 
 .product-name{
-font-size:13px;
+font-size:12px;
 }
 
 .origin,
 .rating,
 .weight{
-font-size:10px;
-}
-
-.price{
-font-size:17px;
-}
-
-.old-price{
 font-size:9px;
 }
 
-.badge{
-font-size:8px;
-padding:5px 7px;
-left:7px;
-top:7px;
+.price{
+font-size:16px;
 }
 
+.old-price{
+font-size:8px;
+}
+
+.badge,
 .stock{
-font-size:8px;
-padding:5px 7px;
-right:7px;
-top:7px;
-}
-
-.card-actions{
-gap:4px;
+font-size:7px;
+padding:4px 6px;
 }
 
 .add-btn,
 .details-btn{
-font-size:10px;
-padding:9px 5px;
+font-size:9px;
+padding:8px 4px;
 }
 
 .featured-item{
-min-width:210px;
+min-width:205px;
 }
 
 .featured-img{
-height:120px;
+height:115px;
 }
 
 .footer-inner{
 grid-template-columns:1fr;
-gap:22px;
+gap:20px;
 }
 
 footer{
-padding-bottom:85px;
+padding-bottom:80px;
 }
 
 .mobile-nav{
@@ -1049,9 +1056,9 @@ position:fixed;
 bottom:0;
 left:0;
 right:0;
-height:62px;
-background:#ffffffef;
-backdrop-filter:blur(15px);
+height:60px;
+background:#fffffff0;
+backdrop-filter:blur(14px);
 border-top:1px solid #dfe8e2;
 z-index:80;
 box-shadow:0 -5px 20px #0001;
@@ -1062,14 +1069,14 @@ flex:1;
 border:0;
 background:transparent;
 color:#65726a;
-font-size:10px;
-font-weight:800;
+font-size:9px;
+font-weight:850;
 }
 
 .mobile-nav button span{
 display:block;
-font-size:19px;
-margin-bottom:2px;
+font-size:18px;
+margin-bottom:1px;
 }
 
 }
@@ -1085,11 +1092,11 @@ height:130px;
 }
 
 .product-name{
-font-size:12px;
+font-size:11px;
 }
 
 .price{
-font-size:16px;
+font-size:15px;
 }
 
 }
@@ -1099,9 +1106,7 @@ font-size:16px;
 
 <body>
 
-<!-- =========================
-     HEADER
-========================= -->
+<!-- ================= HEADER ================= -->
 
 <header id="top">
 
@@ -1109,9 +1114,7 @@ font-size:16px;
 
 <div class="brand">
 
-<div class="brand-icon">
-🛍️
-</div>
+<div class="brand-icon">🛍️</div>
 
 <div class="brand-text">
 
@@ -1129,7 +1132,7 @@ font-size:16px;
 
 <button class="cart-btn" onclick="openCart()">
 🛒 কার্ট
-(<span id="count">0</span>)
+<span id="count" class="cart-number">0</span>
 </button>
 
 </div>
@@ -1137,9 +1140,7 @@ font-size:16px;
 </header>
 
 
-<!-- =========================
-     HERO
-========================= -->
+<!-- ================= HERO ================= -->
 
 <section class="hero">
 
@@ -1163,11 +1164,13 @@ font-size:16px;
 <div class="delivery-info">
 
 <div class="delivery-pill">
-🏠 সদরপুর: <b id="deliveryDhakaText">৳60</b>
+🏠 সদরপুর:
+<b id="deliveryDhakaText">৳60</b>
 </div>
 
 <div class="delivery-pill">
-🚚 সদরপুরের বাইরে: <b id="deliveryOutsideText">৳120</b>
+🚚 সদরপুরের বাইরে:
+<b id="deliveryOutsideText">৳120</b>
 </div>
 
 <div class="delivery-pill">
@@ -1183,79 +1186,53 @@ font-size:16px;
 </section>
 
 
-<!-- =========================
-     FEATURES
-========================= -->
+<!-- ================= FEATURES ================= -->
 
 <section class="features">
 
 <div class="feature">
-
-<div class="feature-icon">
-🚚
-</div>
-
+<div class="feature-icon">🚚</div>
 <div>
 <b>দ্রুত ডেলিভারি</b>
 <span>সারা দেশে</span>
 </div>
-
 </div>
-
 
 <div class="feature">
-
-<div class="feature-icon">
-🌿
-</div>
-
+<div class="feature-icon">🌿</div>
 <div>
 <b>খাঁটি পণ্য</b>
 <span>বাছাইকৃত মান</span>
 </div>
-
 </div>
-
 
 <div class="feature">
-
-<div class="feature-icon">
-💬
-</div>
-
+<div class="feature-icon">💬</div>
 <div>
 <b>সহজ অর্ডার</b>
 <span>WhatsApp-এ</span>
 </div>
-
 </div>
-
 
 <div class="feature">
-
-<div class="feature-icon">
-🔒
-</div>
-
+<div class="feature-icon">🔒</div>
 <div>
 <b>নির্ভরযোগ্য</b>
 <span>বিশ্বস্ত সেবা</span>
 </div>
-
 </div>
 
 </section>
 
 
-<!-- =========================
-     FEATURED
-========================= -->
+<!-- ================= FEATURED ================= -->
 
 <section class="section" id="featuredSection">
 
 <div class="section-heading">
 
 <div>
+
 <h2 class="section-title">
 🔥 জনপ্রিয় পণ্য
 </h2>
@@ -1273,15 +1250,14 @@ font-size:16px;
 </section>
 
 
-<!-- =========================
-     PRODUCTS
-========================= -->
+<!-- ================= PRODUCTS ================= -->
 
 <section class="section" id="productsSection">
 
 <div class="section-heading">
 
 <div>
+
 <h2 class="section-title">
 🛍️ আমাদের পণ্য
 </h2>
@@ -1293,7 +1269,6 @@ font-size:16px;
 </div>
 
 </div>
-
 
 <div class="controls">
 
@@ -1309,7 +1284,6 @@ oninput="render()"
 
 </div>
 
-
 <select id="cat" onchange="render()" class="category">
 
 <option value="">
@@ -1320,15 +1294,12 @@ oninput="render()"
 
 </div>
 
-
 <main id="grid" class="grid"></main>
 
 </section>
 
 
-<!-- =========================
-     FOOTER
-========================= -->
+<!-- ================= FOOTER ================= -->
 
 <footer>
 
@@ -1346,7 +1317,6 @@ oninput="render()"
 
 </div>
 
-
 <div>
 
 <div class="footer-title">
@@ -1354,19 +1324,21 @@ oninput="render()"
 </div>
 
 <div class="footer-line">
-📞 ফোন: <span id="footerPhone">01341605531</span>
+📞 ফোন:
+<span id="footerPhone">01341605531</span>
 </div>
 
 <div class="footer-line">
-💬 WhatsApp: <span id="footerWhatsapp">01341605531</span>
+💬 WhatsApp:
+<span id="footerWhatsapp">01341605531</span>
 </div>
 
 <div class="footer-line">
-✉️ Email: <span id="footerEmail">piyarp51@gmail.com</span>
+✉️ Email:
+<span id="footerEmail">piyarp51@gmail.com</span>
 </div>
 
 </div>
-
 
 <div>
 
@@ -1375,23 +1347,22 @@ oninput="render()"
 </div>
 
 <div class="footer-line">
-💳 bKash: <span id="footerBkash">01341605531</span>
+💳 bKash:
+<span id="footerBkash">01341605531</span>
 </div>
 
 <div class="footer-line">
-💳 Nagad: <span id="footerNagad">01341605531</span>
+💳 Nagad:
+<span id="footerNagad">01341605531</span>
 </div>
 
 <div class="footer-line">
-📍 <span id="footerAddress">
-সদরপুর, ফরিদপুর, বাংলাদেশ
-</span>
+📍 <span id="footerAddress">সদরপুর, ফরিদপুর, বাংলাদেশ</span>
 </div>
 
 </div>
 
 </div>
-
 
 <div class="footer-bottom">
 
@@ -1404,9 +1375,7 @@ oninput="render()"
 </footer>
 
 
-<!-- =========================
-     MOBILE NAV
-========================= -->
+<!-- ================= MOBILE NAV ================= -->
 
 <div class="mobile-nav">
 
@@ -1433,9 +1402,7 @@ oninput="render()"
 </div>
 
 
-<!-- =========================
-     CART MODAL
-========================= -->
+<!-- ================= CART MODAL ================= -->
 
 <div
 id="cartModal"
@@ -1447,9 +1414,7 @@ onclick="if(event.target===this)closeCart()"
 
 <div class="modal-head">
 
-<h2>
-🛒 আপনার কার্ট
-</h2>
+<h2>🛒 আপনার কার্ট</h2>
 
 <button class="close" onclick="closeCart()">
 ✕
@@ -1457,21 +1422,19 @@ onclick="if(event.target===this)closeCart()"
 
 </div>
 
-
 <div class="modal-content">
 
 <div id="cartItems"></div>
 
 <div id="cartSummary"></div>
 
+<div id="orderForm"></div>
+
 <div class="notice">
-📲 অর্ডার সম্পন্ন করতে নিচের WhatsApp বাটনে চাপুন। তারপর আপনার নাম, মোবাইল নম্বর ও ডেলিভারি ঠিকানা লিখে পাঠিয়ে দিন।
+📲 অর্ডার সম্পন্ন করতে WhatsApp বাটনে চাপুন। আপনার নাম, মোবাইল নম্বর ও ডেলিভারি ঠিকানা লিখে পাঠিয়ে দিন।
 </div>
 
-<button
-class="whatsapp"
-onclick="sendOrder()"
->
+<button class="whatsapp" onclick="sendOrder()">
 💬 WhatsApp-এ অর্ডার পাঠান
 </button>
 
@@ -1482,9 +1445,7 @@ onclick="sendOrder()"
 </div>
 
 
-<!-- =========================
-     PRODUCT DETAILS MODAL
-========================= -->
+<!-- ================= PRODUCT MODAL ================= -->
 
 <div
 id="productModal"
@@ -1496,32 +1457,22 @@ onclick="if(event.target===this)closeProductModal()"
 
 <div class="modal-head">
 
-<h2>
-📦 পণ্যের বিস্তারিত
-</h2>
+<h2>📦 পণ্যের বিস্তারিত</h2>
 
-<button
-class="close"
-onclick="closeProductModal()"
->
+<button class="close" onclick="closeProductModal()">
 ✕
 </button>
 
 </div>
 
-<div
-id="productDetails"
-class="modal-content"
-></div>
+<div id="productDetails" class="modal-content"></div>
 
 </div>
 
 </div>
 
 
-<!-- =========================
-     FIREBASE
-========================= -->
+<!-- ================= FIREBASE ================= -->
 
 <script src="https://www.gstatic.com/firebasejs/12.7.0/firebase-app-compat.js"></script>
 
@@ -1530,9 +1481,9 @@ class="modal-content"
 
 <script>
 
-/* =========================
-   FIREBASE CONFIG
-========================= */
+/* =====================================================
+   FIREBASE
+===================================================== */
 
 const firebaseConfig = {
 
@@ -1559,17 +1510,16 @@ measurementId:
 
 };
 
-
 firebase.initializeApp(firebaseConfig);
 
-const db = firebase.firestore();
+const db=firebase.firestore();
 
 
-/* =========================
-   DEFAULT STORE INFO
-========================= */
+/* =====================================================
+   STORE DEFAULT
+===================================================== */
 
-let storeInfo = {
+const DEFAULT_STORE={
 
 name:"তাজা ও খাঁটি মার্ট",
 
@@ -1586,8 +1536,7 @@ nagad:"01341605531",
 
 email:"piyarp51@gmail.com",
 
-address:
-"সদরপুর, ফরিদপুর, বাংলাদেশ",
+address:"সদরপুর, ফরিদপুর, বাংলাদেশ",
 
 deliveryChargeDhaka:60,
 
@@ -1597,12 +1546,15 @@ freeDeliveryThreshold:2500
 
 };
 
+let storeInfo={...DEFAULT_STORE};
 
-/* =========================
-   PRODUCTS
-========================= */
 
-const fallbackProducts = [
+/* =====================================================
+   FALLBACK PRODUCTS
+   Firebase খালি/ভুল হলেও এগুলো থাকবে
+===================================================== */
+
+const fallbackProducts=[
 
 {
 id:"zahedi-dates-iran",
@@ -1612,14 +1564,9 @@ category:"dates",
 badge:"সেরা বিক্রিত",
 isFeatured:true,
 image:"https://images.unsplash.com/photo-1543362906-acfc16c67564?auto=format&fit=crop&w=900&q=80",
-description:"মাঝারি শক্ত ও আধা-শুকনো টেক্সচারের হালকা সোনালী-বাদামী রঙের ইরানি জাহেদি খেজুর। অতিরিক্ত আঠালো নয় এবং দীর্ঘ সময় স্বাভাবিক তাপমাত্রায় ভালো থাকে।",
+description:"মাঝারি শক্ত ও আধা-শুকনো টেক্সচারের হালকা সোনালী-বাদামী রঙের ইরানি জাহেদি খেজুর।",
 origin:"ইরান (Iran)",
-features:[
-"স্বাদ: পরিমিত মিষ্টি ও ড্রাই টেক্সচার",
-"আকার: মাঝারি সাইজ ও পরিষ্কার খোসা",
-"প্যাকেজিং: ফুড-গ্রেড সিলড বক্সে সংরক্ষিত",
-"সংরক্ষণ: স্বাভাবিক শুষ্ক ও ঠান্ডা স্থানে ভালো থাকে"
-],
+features:["পরিমিত মিষ্টি","ড্রাই টেক্সচার","ফুড-গ্রেড প্যাকেজিং"],
 inStock:true,
 rating:4.8,
 reviewsCount:110,
@@ -1637,14 +1584,9 @@ category:"dates",
 badge:"প্রিমিয়াম জাম্বো",
 isFeatured:true,
 image:"https://images.unsplash.com/photo-1596541223130-5d31a73fb6c6?auto=format&fit=crop&w=900&q=80",
-description:"আকারে বড় এবং মাংসল জর্ডানের আসল মেদজুল খেজুর। প্রাকৃতিক মিষ্টি স্বাদ ও নরম টেক্সচার।",
+description:"আকারে বড় ও মাংসল জর্ডানের মেদজুল খেজুর। প্রাকৃতিক মিষ্টি স্বাদ ও নরম টেক্সচার।",
 origin:"জর্ডান (Jordan)",
-features:[
-"স্বাদ: প্রাকৃতিক মিষ্টি ও নরম ক্যারামেল ভাব",
-"আকার: জাম্বো সাইজ, গাঢ় বাদামী রঙ",
-"প্যাকেজিং: প্রিমিয়াম সিলড বক্স",
-"সংরক্ষণ: ফ্রিজে রাখলে দীর্ঘ সময় নরম ও ফ্রেশ থাকে"
-],
+features:["প্রাকৃতিক মিষ্টি","জাম্বো সাইজ","প্রিমিয়াম প্যাকেজিং"],
 inStock:true,
 rating:4.9,
 reviewsCount:85,
@@ -1662,20 +1604,15 @@ category:"dates",
 badge:"ডালিসহ প্যাক",
 isFeatured:false,
 image:"https://images.unsplash.com/photo-1608686207856-001b95cf60ca?auto=format&fit=crop&w=900&q=80",
-description:"স্বচ্ছ সোনালী-বাদামী রঙের তিউনিসিয়ান ডালিসহ দেগলেত নুর খেজুর। পরিমিত মিষ্টি ও নরম ধরনের খেজুর।",
+description:"স্বচ্ছ সোনালী-বাদামী রঙের তিউনিসিয়ান দেগলেত নুর খেজুর।",
 origin:"তিউনিসিয়া (Tunisia)",
-features:[
-"স্বাদ: মৃদু মিষ্টি, চিউই টেক্সচার",
-"আকার: মাঝারি ও ডালিসহ সাজানো",
-"প্যাকেজিং: ৫০০ গ্রামের মূল আমদানি বক্স",
-"সংরক্ষণ: স্বাভাবিক ঠান্ডা স্থানে রাখার উপযোগী"
-],
+features:["মৃদু মিষ্টি","ডালিসহ","সিলড প্যাক"],
 inStock:true,
 rating:4.7,
 reviewsCount:62,
 weightOptions:[
 {label:"৫০০ গ্রাম বক্স",weightInGrams:500,price:360,originalPrice:400},
-{label:"১ কেজি (২টি বক্স)",weightInGrams:1000,price:700,originalPrice:780}
+{label:"১ কেজি",weightInGrams:1000,price:700,originalPrice:780}
 ]
 },
 
@@ -1687,14 +1624,9 @@ category:"dates",
 badge:"নরম ও মিষ্টি",
 isFeatured:false,
 image:"https://images.unsplash.com/photo-1549488344-cbb6c34cf08b?auto=format&fit=crop&w=900&q=80",
-description:"সংযুক্ত আরব আমিরাত থেকে আমদানিকৃত মিষ্টি ও নরম স্বাদের দাব্বাশ খেজুর। প্রতিদিনের ব্যবহারের জন্য অত্যন্ত সাশ্রয়ী।",
-origin:"সংযুক্ত আরব আমিরাত (United Arab Emirates)",
-features:[
-"স্বাদ: মিষ্টি ও নরম শাঁসযুক্ত",
-"আকার: মাঝারি গোলটে সাইজ",
-"প্যাকেজিং: সিলড ফুড গ্রেড প্যাকেট",
-"সংরক্ষণ: শুকনো ও ঠান্ডা স্থানে সংরক্ষণ করুন"
-],
+description:"সংযুক্ত আরব আমিরাত থেকে আমদানিকৃত মিষ্টি ও নরম দাব্বাশ খেজুর।",
+origin:"সংযুক্ত আরব আমিরাত",
+features:["মিষ্টি","নরম","দৈনন্দিন ব্যবহারের জন্য উপযোগী"],
 inStock:true,
 rating:4.6,
 reviewsCount:78,
@@ -1712,19 +1644,14 @@ category:"fruits",
 badge:"জনপ্রিয় ফল",
 isFeatured:true,
 image:"https://images.unsplash.com/photo-1541344999736-83eca872f241?auto=format&fit=crop&w=900&q=80",
-description:"ভারতের মহারাষ্ট্র থেকে আমদানিকৃত তাজা লাল ডালিম/বেদানা। লাল রঙের মিষ্টি দানায় ভরা এবং রসালো।",
-origin:"মহারাষ্ট্র, ভারত (India)",
-features:[
-"স্বাদ: মিষ্টি ও রসালো লাল দানা",
-"আকার: প্রতিটি ২৫০-৩০০ গ্রাম ওজনের বড় সাইজ",
-"মান নিয়ন্ত্রণ: দাগমুক্ত ও বাছাইকৃত ফল সরবরাহ করা হয়",
-"সংরক্ষণ: সাধারণ তাপমাত্রায় ৩-৫ দিন, ফ্রিজে ১০-১২ দিন সতেজ থাকে"
-],
+description:"ভারতের মহারাষ্ট্র থেকে আমদানিকৃত তাজা লাল ডালিম।",
+origin:"মহারাষ্ট্র, ভারত",
+features:["মিষ্টি","রসালো","বাছাইকৃত ফল"],
 inStock:true,
 rating:4.8,
 reviewsCount:95,
 weightOptions:[
-{label:"১ কেজি (৩-৪ টি)",weightInGrams:1000,price:420,originalPrice:460},
+{label:"১ কেজি",weightInGrams:1000,price:420,originalPrice:460},
 {label:"২ কেজি",weightInGrams:2000,price:820,originalPrice:900}
 ]
 },
@@ -1737,20 +1664,15 @@ category:"fruits",
 badge:"দেশি বাগান",
 isFeatured:true,
 image:"https://images.unsplash.com/photo-1527325678964-54921661f888?auto=format&fit=crop&w=900&q=80",
-description:"বাংলাদেশের নাটোরের বাগান থেকে সরাসরি সংগৃহীত লাল শাঁসযুক্ত মিষ্টি ড্রাগন ফল। গাছে পাকার পর সংগৃহীত।",
-origin:"নাটোর, বাংলাদেশ (Bangladesh)",
-features:[
-"স্বাদ: হালকা মিষ্টি ও রসালো লাল শাঁস",
-"আকার: প্রতিটি ৩৫০-৪৫০ গ্রাম",
-"উৎস: স্থানীয় রেজিস্টার্ড বাগান থেকে সংগৃহীত",
-"সংরক্ষণ: স্বাভাবিক তাপমাত্রায় ৩-৪ দিন ভালো থাকে"
-],
+description:"বাংলাদেশের নাটোরের বাগান থেকে সংগৃহীত লাল শাঁসযুক্ত ড্রাগন ফল।",
+origin:"নাটোর, বাংলাদেশ",
+features:["দেশি বাগান","লাল শাঁস","তাজা ফল"],
 inStock:true,
 rating:4.8,
 reviewsCount:72,
 weightOptions:[
-{label:"১ কেজি (২-৩ টি)",weightInGrams:1000,price:340,originalPrice:380},
-{label:"২ কেজি প্যাক",weightInGrams:2000,price:660,originalPrice:740}
+{label:"১ কেজি",weightInGrams:1000,price:340,originalPrice:380},
+{label:"২ কেজি",weightInGrams:2000,price:660,originalPrice:740}
 ]
 },
 
@@ -1762,19 +1684,14 @@ category:"fruits",
 badge:"মিষ্টি ও খাস্তা",
 isFeatured:false,
 image:"https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?auto=format&fit=crop&w=900&q=80",
-description:"চীন থেকে আমদানিকৃত প্রিমিয়াম গ্রেডের ফুজি আপেল। প্রাকৃতিক মিষ্টি স্বাদ এবং মচমচে কামড়।",
+description:"চীন থেকে আমদানিকৃত প্রিমিয়াম ফুজি আপেল।",
 origin:"চীন (China)",
-features:[
-"স্বাদ: মিষ্টি ও ক্রাঞ্চি টেক্সচার",
-"আকার: মাঝারি থেকে বড় সাইজ",
-"প্যাকিং: ফোম নেটে মোড়ানো সুরক্ষিত প্যাক",
-"সংরক্ষণ: ফ্রিজে রাখলে ২-৩ সপ্তাহ ভালো থাকে"
-],
+features:["মিষ্টি","ক্রিস্পি","প্রিমিয়াম গ্রেড"],
 inStock:true,
 rating:4.7,
 reviewsCount:68,
 weightOptions:[
-{label:"১ কেজি (৫-৬ টি)",weightInGrams:1000,price:310,originalPrice:350},
+{label:"১ কেজি",weightInGrams:1000,price:310,originalPrice:350},
 {label:"২ কেজি",weightInGrams:2000,price:600,originalPrice:680}
 ]
 },
@@ -1787,18 +1704,14 @@ category:"fruits",
 badge:"রসালো ফল",
 isFeatured:false,
 image:"https://images.unsplash.com/photo-1611080626919-7cf5a9dbab5b?auto=format&fit=crop&w=900&q=80",
-description:"দক্ষিণ আফ্রিকা থেকে আমদানিকৃত রসালো ও পাতলা চামড়ার মিষ্টি মাল্টা। জুস করার জন্য বা সরাসরি খাওয়ার জন্য উপযুক্ত।",
-origin:"দক্ষিণ আফ্রিকা (South Africa)",
-features:[
-"স্বাদ: রসালো ও পরিমিত মিষ্টি সাইট্রাস",
-"আকার: মাঝারি থেকে বড় আকারের গোল মাল্টা",
-"সংরক্ষণ: ঠান্ডা স্থানে ১-২ সপ্তাহ সংরক্ষণযোগ্য"
-],
+description:"দক্ষিণ আফ্রিকা থেকে আমদানিকৃত রসালো মিষ্টি মাল্টা।",
+origin:"দক্ষিণ আফ্রিকা",
+features:["রসালো","মিষ্টি","জুসের জন্য উপযোগী"],
 inStock:true,
 rating:4.7,
 reviewsCount:88,
 weightOptions:[
-{label:"১ কেজি (৪-৫ টি)",weightInGrams:1000,price:270,originalPrice:300},
+{label:"১ কেজি",weightInGrams:1000,price:270,originalPrice:300},
 {label:"২ কেজি",weightInGrams:2000,price:520,originalPrice:580}
 ]
 },
@@ -1811,21 +1724,16 @@ category:"nuts",
 badge:"প্রিমিয়াম বাদাম",
 isFeatured:true,
 image:"https://images.unsplash.com/photo-1536591375315-1b83842c554a?auto=format&fit=crop&w=900&q=80",
-description:"ভিয়েতনাম থেকে আমদানিকৃত W240 গ্রেডের আস্ত বড় কাজুবাদাম। হালকা লবণ সহযোগে ড্রাই রোস্টেড করা।",
-origin:"ভিয়েতনাম (Vietnam)",
-features:[
-"স্বাদ: মুচমুচে ও হালকা লবণাক্ত",
-"গ্রেড: W240 বড় সাইজের আস্ত বাদাম",
-"প্যাকেজিং: বায়ুরোধী এয়ারটাইট জারে প্যাকেটজাত",
-"সংরক্ষণ: বায়ুরোধী পাত্রে রাখলে ৩-৪ মাস ক্রাঞ্চি থাকে"
-],
+description:"ভিয়েতনাম থেকে আমদানিকৃত W240 গ্রেডের কাজুবাদাম।",
+origin:"ভিয়েতনাম (Vietnam)",
+features:["W240 গ্রেড","ড্রাই রোস্টেড","হালকা লবণাক্ত"],
 inStock:true,
 rating:4.9,
 reviewsCount:140,
 weightOptions:[
-{label:"২৫০ গ্রাম জার",weightInGrams:250,price:380,originalPrice:420},
-{label:"৫০০ গ্রাম জার",weightInGrams:500,price:720,originalPrice:800},
-{label:"১ কেজি প্যাক",weightInGrams:1000,price:1380,originalPrice:1520}
+{label:"২৫০ গ্রাম",weightInGrams:250,price:380,originalPrice:420},
+{label:"৫০০ গ্রাম",weightInGrams:500,price:720,originalPrice:800},
+{label:"১ কেজি",weightInGrams:1000,price:1380,originalPrice:1520}
 ]
 },
 
@@ -1837,14 +1745,9 @@ category:"nuts",
 badge:"আমদানিকৃত",
 isFeatured:true,
 image:"https://images.unsplash.com/photo-1508061253366-f7da158b6d46?auto=format&fit=crop&w=900&q=80",
-description:"যুক্তরাষ্ট্রের ক্যালিফোর্নিয়া থেকে আমদানিকৃত অক্ষত ও মিষ্টি স্বাদের কাঠবাদাম।",
-origin:"ক্যালিফোর্নিয়া, যুক্তরাষ্ট্র (USA)",
-features:[
-"স্বাদ: প্রাকৃতিক বাদামী মিষ্টি স্বাদ",
-"আকার: বড় ও ভাঙামুক্ত কার্নেল",
-"প্যাকেজিং: সিলড ফুড-গ্রেড পাউচ",
-"সংরক্ষণ: শুষ্ক স্থানে দীর্ঘ সময় ভালো থাকে"
-],
+description:"ক্যালিফোর্নিয়া থেকে আমদানিকৃত প্রিমিয়াম কাঠবাদাম।",
+origin:"ক্যালিফোর্নিয়া, যুক্তরাষ্ট্র",
+features:["প্রিমিয়াম","বড় সাইজ","ভাঙামুক্ত কার্নেল"],
 inStock:true,
 rating:4.9,
 reviewsCount:175,
@@ -1865,12 +1768,7 @@ isFeatured:false,
 image:"https://images.unsplash.com/photo-1528751014936-863e6e7a319c?auto=format&fit=crop&w=900&q=80",
 description:"ইরান থেকে আমদানিকৃত মুখ খোলা ইরানি পেস্তাবাদাম।",
 origin:"ইরান (Iran)",
-features:[
-"স্বাদ: ক্রাঞ্চি ও মৃদু লবণাক্ত",
-"আকার: স্বাভাবিক মুখ খোলা বড় সাইজ",
-"প্যাকেজিং: এয়ারটাইট জিপলক পাউচ",
-"সংরক্ষণ: শুষ্ক ও ঠান্ডা স্থানে ভালো থাকে"
-],
+features:["ক্রাঞ্চি","মৃদু লবণাক্ত","বড় সাইজ"],
 inStock:true,
 rating:4.8,
 reviewsCount:82,
@@ -1889,14 +1787,9 @@ category:"nuts",
 badge:"পরিষ্কার কার্নেল",
 isFeatured:false,
 image:"https://images.unsplash.com/photo-1563227812-0ea4c22e6cc8?auto=format&fit=crop&w=900&q=80",
-description:"চিলি থেকে আমদানিকৃত হালকা রঙের অক্ষত আখরোটের শাঁস।",
+description:"চিলি থেকে আমদানিকৃত পরিষ্কার আখরোটের কার্নেল।",
 origin:"চিলি (Chile)",
-features:[
-"স্বাদ: তাজা ও প্রাকৃতিক বাদামী স্বাদ",
-"আকার: আস্ত ও অর্ধেক ভাঙা পরিষ্কার কার্নেল",
-"প্যাকেজিং: ভ্যাকুয়াম সিলড প্যাক",
-"সংরক্ষণ: ফ্রিজে অথবা ঠান্ডা স্থানে রাখলে স্বাদ অটুট থাকে"
-],
+features:["পরিষ্কার কার্নেল","হালকা রঙ","ভ্যাকুয়াম প্যাক"],
 inStock:true,
 rating:4.8,
 reviewsCount:59,
@@ -1915,20 +1808,15 @@ category:"rice_dal",
 badge:"খাঁটি সুগন্ধি চাল",
 isFeatured:true,
 image:"https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=900&q=80",
-description:"দিনাজপুরের খাঁটি চাষীদের কাছ থেকে সরাসরি সংগৃহীত ছোট দানার সুগন্ধি চিনিগুঁড়া চাল।",
-origin:"দিনাজপুর, বাংলাদেশ (Bangladesh)",
-features:[
-"বৈশিষ্ট্য: ছোট দানা ও প্রাকৃতিক তীব্র সুবাস",
-"প্রক্রিয়াকরণ: কৃত্রিম পলিশ বা মোমমুক্ত খাঁটি চাল",
-"প্যাকেজিং: ফুড গ্রেড মোটা পলি ও কাপড়ের ব্যাগ",
-"সংরক্ষণ: শুকনো পাত্রে স্বাভাবিক তাপমাত্রায় সংরক্ষণযোগ্য"
-],
+description:"দিনাজপুরের খাঁটি চাষীদের কাছ থেকে সংগৃহীত সুগন্ধি চিনিগুঁড়া চাল।",
+origin:"দিনাজপুর, বাংলাদেশ",
+features:["ছোট দানা","প্রাকৃতিক সুবাস","কৃত্রিম পলিশমুক্ত"],
 inStock:true,
 rating:4.9,
 reviewsCount:92,
 weightOptions:[
-{label:"১ কেজি প্যাকেট",weightInGrams:1000,price:145,originalPrice:160},
-{label:"৫ কেজি ব্যাগ",weightInGrams:5000,price:700,originalPrice:780}
+{label:"১ কেজি",weightInGrams:1000,price:145,originalPrice:160},
+{label:"৫ কেজি",weightInGrams:5000,price:700,originalPrice:780}
 ]
 },
 
@@ -1940,21 +1828,16 @@ category:"rice_dal",
 badge:"দৈনন্দিন সেরা চাল",
 isFeatured:false,
 image:"https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?auto=format&fit=crop&w=900&q=80",
-description:"দৈনন্দিন ভাতের জন্য উৎকৃষ্ট মানের চিকন নাজিরশাইল চাল। রান্নার পর ভাত লম্বাটে ও ঝরঝরে থাকে।",
-origin:"বাংলাদেশ (Bangladesh)",
-features:[
-"বৈশিষ্ট্য: সরু ও চিকন দানা, রান্না করলে আঠালো হয় না",
-"প্যাকেজিং: শক্ত সিলড বস্তা / প্যাকেট",
-"মান: ভাঙামুক্ত ও পরিষ্কার দানা",
-"সংরক্ষণ: শুকনো ড্রামে সংরক্ষণ করুন"
-],
+description:"দৈনন্দিন ভাতের জন্য উৎকৃষ্ট মানের চিকন নাজিরশাইল চাল।",
+origin:"বাংলাদেশ",
+features:["চিকন দানা","ঝরঝরে ভাত","পরিষ্কার দানা"],
 inStock:true,
 rating:4.7,
 reviewsCount:64,
 weightOptions:[
-{label:"৫ কেজি প্যাকেট",weightInGrams:5000,price:420,originalPrice:450},
-{label:"১০ কেজি বস্তা",weightInGrams:10000,price:820,originalPrice:880},
-{label:"২৫ কেজি বস্তা",weightInGrams:25000,price:2000,originalPrice:2150}
+{label:"৫ কেজি",weightInGrams:5000,price:420,originalPrice:450},
+{label:"১০ কেজি",weightInGrams:10000,price:820,originalPrice:880},
+{label:"২৫ কেজি",weightInGrams:25000,price:2000,originalPrice:2150}
 ]
 },
 
@@ -1966,20 +1849,15 @@ category:"rice_dal",
 badge:"দেশি ডাল",
 isFeatured:true,
 image:"https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=900&q=80",
-description:"দেশি ছোট দানার বাছাইকৃত লাল মসুর ডাল। দ্রুত সেদ্ধ হয় এবং রান্নায় চমৎকার ঘ্রাণ ও আসল স্বাদ পাওয়া যায়।",
-origin:"নাটোর ও যশোর, বাংলাদেশ (Bangladesh)",
-features:[
-"দানা: আসল দেশি ছোট সাইজের দানা",
-"প্রকৃতি: কৃত্রিম রং বা ক্ষতিকর কেমিক্যাল মুক্ত",
-"রান্না: অল্প সময়ে সুন্দরভাবে গলে যায়",
-"সংরক্ষণ: শুকনো বয়ামে সংরক্ষণ করুন"
-],
+description:"দেশি ছোট দানার বাছাইকৃত লাল মসুর ডাল।",
+origin:"নাটোর ও যশোর, বাংলাদেশ",
+features:["ছোট দানা","দ্রুত সেদ্ধ","কৃত্রিম রংমুক্ত"],
 inStock:true,
 rating:4.8,
 reviewsCount:118,
 weightOptions:[
 {label:"৫০০ গ্রাম",weightInGrams:500,price:80,originalPrice:90},
-{label:"১ কেজি প্যাকেট",weightInGrams:1000,price:155,originalPrice:170},
+{label:"১ কেজি",weightInGrams:1000,price:155,originalPrice:170},
 {label:"২ কেজি",weightInGrams:2000,price:300,originalPrice:330}
 ]
 },
@@ -1992,13 +1870,9 @@ category:"rice_dal",
 badge:"মুগ ডাল",
 isFeatured:false,
 image:"https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?auto=format&fit=crop&w=900&q=80",
-description:"হালকা ড্রাই রোস্টেড সুগন্ধি সোনালী মুগ ডাল। খিচুড়ি বা ভুনা মুগ ডালের জন্য পারফেক্ট।",
-origin:"বাংলাদেশ (Bangladesh)",
-features:[
-"স্বাদ: মৃদু মিষ্টি ও রোস্টেড ঘ্রাণ",
-"প্যাকেজিং: সিলড পাউচ প্যাক",
-"সংরক্ষণ: বায়ুরোধী পাত্রে রাখুন"
-],
+description:"হালকা ড্রাই রোস্টেড সুগন্ধি সোনালী মুগ ডাল।",
+origin:"বাংলাদেশ",
+features:["রোস্টেড","সুগন্ধি","খিচুড়ির জন্য উপযোগী"],
 inStock:true,
 rating:4.8,
 reviewsCount:45,
@@ -2016,21 +1890,16 @@ category:"oils_ghee",
 badge:"ঘানি ভাঙা",
 isFeatured:true,
 image:"https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=900&q=80",
-description:"দেশি মাঘী সরিষা থেকে কাঠের ঘানিতে ঠাণ্ডা চাপে ভাঙানো ঝাঁঝালো খাঁটি সরিষার তেল।",
-origin:"পাবনা ও সিরাজগঞ্জ, বাংলাদেশ (Bangladesh)",
-features:[
-"প্রক্রিয়া: কাঠের ঘানিতে কোল্ড-প্রেসড",
-"ঝাঁঝ: প্রাকৃতিক খাঁটি সরিষার তীব্র ঝাঁঝ ও স্বাদ",
-"প্যাকেজিং: ফুড-গ্রেড সিলড পেট বোতল",
-"সংরক্ষণ: রোদে বা স্বাভাবিক তাপমাত্রায় ভালো থাকে"
-],
+description:"দেশি সরিষা থেকে কাঠের ঘানিতে ভাঙানো খাঁটি সরিষার তেল।",
+origin:"পাবনা ও সিরাজগঞ্জ, বাংলাদেশ",
+features:["কাঠের ঘানি","কোল্ড প্রেসড","প্রাকৃতিক ঝাঁঝ"],
 inStock:true,
 rating:4.9,
 reviewsCount:160,
 weightOptions:[
-{label:"৫০০ মিলি বোতল",weightInGrams:500,price:180,originalPrice:200},
-{label:"১ লিটার বোতল",weightInGrams:1000,price:340,originalPrice:380},
-{label:"২ লিটার বোতল",weightInGrams:2000,price:670,originalPrice:740}
+{label:"৫০০ মিলি",weightInGrams:500,price:180,originalPrice:200},
+{label:"১ লিটার",weightInGrams:1000,price:340,originalPrice:380},
+{label:"২ লিটার",weightInGrams:2000,price:670,originalPrice:740}
 ]
 },
 
@@ -2042,21 +1911,16 @@ category:"oils_ghee",
 badge:"খাঁটি গাওয়া ঘি",
 isFeatured:true,
 image:"https://images.unsplash.com/photo-1628088062854-d1870b4553da?auto=format&fit=crop&w=900&q=80",
-description:"সিরাজগঞ্জের বাথান অঞ্চলের খাঁটি গরুর দুধের মাখন থেকে জ্বাল দেওয়া সুবাসিত দানাদার খাঁটি গাওয়া ঘি।",
-origin:"সিরাজগঞ্জ, বাংলাদেশ (Bangladesh)",
-features:[
-"টেক্সচার: প্রাকৃতিক দানাদার ও সোনালী রঙ",
-"সুবাস: ঐতিহ্যবাহী মাখন জ্বালানোর খাঁটি ঘ্রাণ",
-"প্যাকেজিং: ফুড গ্রেড সিলড কাঁচের বা পেট জার",
-"সংরক্ষণ: স্বাভাবিক তাপমাত্রায় ৬-৮ মাস ভালো থাকে"
-],
+description:"সিরাজগঞ্জের খাঁটি গরুর দুধের মাখন থেকে তৈরি গাওয়া ঘি।",
+origin:"সিরাজগঞ্জ, বাংলাদেশ",
+features:["প্রাকৃতিক দানাদার","সোনালী রঙ","সুবাসিত"],
 inStock:true,
 rating:4.9,
 reviewsCount:135,
 weightOptions:[
-{label:"২৫০ গ্রাম জার",weightInGrams:250,price:420,originalPrice:460},
-{label:"৫০০ গ্রাম জার",weightInGrams:500,price:820,originalPrice:900},
-{label:"১ কেজি জার",weightInGrams:1000,price:1600,originalPrice:1750}
+{label:"২৫০ গ্রাম",weightInGrams:250,price:420,originalPrice:460},
+{label:"৫০০ গ্রাম",weightInGrams:500,price:820,originalPrice:900},
+{label:"১ কেজি",weightInGrams:1000,price:1600,originalPrice:1750}
 ]
 },
 
@@ -2068,34 +1932,38 @@ category:"combos",
 badge:"সাশ্রয়ী প্যাক",
 isFeatured:true,
 image:"https://images.unsplash.com/photo-1511018556340-d16986a1c194?auto=format&fit=crop&w=900&q=80",
-description:"কাজুবাদাম, কাঠবাদাম, পেস্তাবাদাম, আখরোট ও কিশমিশের স্বাস্থ্যসম্মত মিশ্রণ।",
+description:"কাজু, কাঠবাদাম, পেস্তা, আখরোট ও কিশমিশের মিশ্রণ।",
 origin:"আমদানিকৃত বিভিন্ন দেশ",
-features:[
-"উপাদান: কাজু, কাঠবাদাম, পেস্তা, আখরোট ও কিশমিশ",
-"প্যাকেজিং: ফুড-গ্রেড স্বচ্ছ পেট জার",
-"উপকারিতা: প্রতিদিনের নাস্তা বা স্ন্যাকস হিসেবে সুবিধাজনক",
-"সংরক্ষণ: জারের মুখ শক্ত করে বন্ধ রাখলে মচমচে থাকে"
-],
+features:["কাজু","কাঠবাদাম","পেস্তা","আখরোট","কিশমিশ"],
 inStock:true,
 rating:4.9,
 reviewsCount:125,
 weightOptions:[
-{label:"৫০০ গ্রাম জার",weightInGrams:500,price:680,originalPrice:760},
-{label:"১ কেজি ফ্যামিলি জার",weightInGrams:1000,price:1300,originalPrice:1450}
+{label:"৫০০ গ্রাম",weightInGrams:500,price:680,originalPrice:760},
+{label:"১ কেজি",weightInGrams:1000,price:1300,originalPrice:1450}
 ]
 }
 
 ];
 
 
+/* =====================================================
+   STATE
+===================================================== */
+
 let products=[...fallbackProducts];
 
 const cart=[];
 
+let selectedDetail={
+id:null,
+weightIndex:0
+};
 
-/* =========================
+
+/* =====================================================
    CATEGORY
-========================= */
+===================================================== */
 
 const categoryNames={
 
@@ -2114,24 +1982,26 @@ combos:"কম্বো"
 };
 
 
-/* =========================
+/* =====================================================
    MONEY
-========================= */
+===================================================== */
 
-function money(n){
+function money(value){
 
-return "৳"+Number(n||0).toLocaleString("bn-BD");
+const n=Number(value)||0;
+
+return "৳"+n.toLocaleString("bn-BD");
 
 }
 
 
-/* =========================
+/* =====================================================
    ESCAPE
-========================= */
+===================================================== */
 
 function escapeHtml(value){
 
-return String(value||"")
+return String(value??"")
 .replace(/&/g,"&amp;")
 .replace(/</g,"&lt;")
 .replace(/>/g,"&gt;")
@@ -2141,24 +2011,59 @@ return String(value||"")
 }
 
 
-/* =========================
+/* =====================================================
+   VALIDATE PRODUCT
+   Firebase-এর ভুল document যেন website নষ্ট না করে
+===================================================== */
+
+function isValidProduct(p){
+
+if(!p)return false;
+
+if(!p.id)return false;
+
+if(!p.name)return false;
+
+if(!Array.isArray(p.weightOptions))return false;
+
+if(!p.weightOptions.length)return false;
+
+const validWeights=p.weightOptions.some(function(w){
+
+return w &&
+w.weightInGrams &&
+Number(w.price)>=0;
+
+});
+
+if(!validWeights)return false;
+
+return true;
+
+}
+
+
+/* =====================================================
    LOAD STORE INFO
-========================= */
+===================================================== */
 
 async function loadStoreInfo(){
 
 try{
 
 const doc=
-await db.collection("storeInfo")
+await db
+.collection("storeInfo")
 .doc("main")
 .get();
 
 if(doc.exists){
 
+const data=doc.data()||{};
+
 storeInfo={
-...storeInfo,
-...doc.data()
+...DEFAULT_STORE,
+...data
 };
 
 }
@@ -2166,9 +2071,11 @@ storeInfo={
 }catch(error){
 
 console.log(
-"Store info Firebase থেকে লোড হয়নি:",
+"Store info load failed:",
 error.message
 );
+
+storeInfo={...DEFAULT_STORE};
 
 }
 
@@ -2177,101 +2084,92 @@ applyStoreInfo();
 }
 
 
-/* =========================
+/* =====================================================
    APPLY STORE INFO
-========================= */
+===================================================== */
 
 function applyStoreInfo(){
 
-const name=storeInfo.name||"তাজা ও খাঁটি মার্ট";
+const name=
+storeInfo.name||DEFAULT_STORE.name;
 
 const tagline=
-storeInfo.tagline||
-"আমদানিকৃত ও দেশি ফল, খেজুর, বাদাম, ডাল ও চালের নির্ভরযোগ্য অনলাইন শপ";
+storeInfo.tagline||DEFAULT_STORE.tagline;
 
+document.getElementById("storeName").textContent=name;
 
-document.getElementById("storeName")
-.textContent=name;
+document.getElementById("storeTagline").textContent=tagline;
 
-document.getElementById("storeTagline")
-.textContent=tagline;
+document.getElementById("heroTagline").textContent=tagline;
 
-document.getElementById("heroTagline")
-.textContent=tagline;
+document.getElementById("footerName").textContent=name;
 
-document.getElementById("footerName")
-.textContent=name;
+document.getElementById("copyrightName").textContent=name;
 
-document.getElementById("copyrightName")
-.textContent=name;
+document.getElementById("footerTagline").textContent=tagline;
 
-document.getElementById("footerTagline")
-.textContent=tagline;
+document.getElementById("footerPhone").textContent=
+storeInfo.phone||"";
 
+document.getElementById("footerWhatsapp").textContent=
+storeInfo.whatsapp||"";
 
-document.getElementById("footerPhone")
-.textContent=storeInfo.phone||"";
+document.getElementById("footerEmail").textContent=
+storeInfo.email||"";
 
-document.getElementById("footerWhatsapp")
-.textContent=storeInfo.whatsapp||"";
+document.getElementById("footerBkash").textContent=
+storeInfo.bKash||"";
 
-document.getElementById("footerEmail")
-.textContent=storeInfo.email||"";
+document.getElementById("footerNagad").textContent=
+storeInfo.nagad||"";
 
-document.getElementById("footerBkash")
-.textContent=storeInfo.bKash||"";
+document.getElementById("footerAddress").textContent=
+storeInfo.address||"";
 
-document.getElementById("footerNagad")
-.textContent=storeInfo.nagad||"";
+document.getElementById("deliveryDhakaText").textContent=
+money(storeInfo.deliveryChargeDhaka);
 
-document.getElementById("footerAddress")
-.textContent=storeInfo.address||"";
+document.getElementById("deliveryOutsideText").textContent=
+money(storeInfo.deliveryChargeOutside);
 
-
-document.getElementById("deliveryDhakaText")
-.textContent=money(storeInfo.deliveryChargeDhaka);
-
-document.getElementById("deliveryOutsideText")
-.textContent=money(storeInfo.deliveryChargeOutside);
-
-document.getElementById("freeDeliveryText")
-.textContent=
+document.getElementById("freeDeliveryText").textContent=
 money(storeInfo.freeDeliveryThreshold)+"+";
 
 }
 
 
-/* =========================
+/* =====================================================
    LOAD FIREBASE PRODUCTS
-========================= */
+   গুরুত্বপূর্ণ:
+   fallback কখনো সরাসরি replace হবে না।
+===================================================== */
 
 async function loadProductsFromFirebase(){
 
 try{
 
 const snapshot=
-await db.collection("products").get();
-
-if(snapshot.empty){
-
-products=[...fallbackProducts];
-
-render();
-renderFeatured();
-
-return;
-
-}
-
+await db
+.collection("products")
+.get();
 
 const firebaseProducts=[];
 
 snapshot.forEach(function(doc){
 
-const p=doc.data();
+const p=doc.data()||{};
 
-if(p.id==="setup"){
+if(p.id==="setup")return;
+
+if(!isValidProduct(p)){
+
+console.log(
+"Invalid product skipped:",
+doc.id
+);
+
 return;
+
 }
 
 firebaseProducts.push(p);
@@ -2279,9 +2177,34 @@ firebaseProducts.push(p);
 });
 
 
+/*
+ Firebase-এ valid product থাকলে:
+ fallback + Firebase merge হবে।
+
+ Firebase-এর একই ID থাকলে Firebase version
+ fallback version-কে replace করবে।
+
+ ফলে Firebase-এ ১টা ভুল product থাকলেও
+ বাকি fallback products হারাবে না।
+*/
+
 if(firebaseProducts.length){
 
-products=firebaseProducts;
+const map=new Map();
+
+fallbackProducts.forEach(function(p){
+
+map.set(p.id,p);
+
+});
+
+firebaseProducts.forEach(function(p){
+
+map.set(p.id,p);
+
+});
+
+products=Array.from(map.values());
 
 }else{
 
@@ -2293,12 +2216,22 @@ render();
 
 renderFeatured();
 
+console.log(
+"Valid products loaded:",
+products.length
+);
+
 }catch(error){
 
 console.log(
-"Products Firebase থেকে লোড হয়নি:",
+"Firebase products load failed:",
 error.message
 );
+
+/*
+ Firebase সম্পূর্ণ কাজ না করলেও
+ fallback products থাকবে।
+*/
 
 products=[...fallbackProducts];
 
@@ -2311,91 +2244,75 @@ renderFeatured();
 }
 
 
-/* =========================
-   INIT
-========================= */
+/* =====================================================
+   CATEGORY INIT
+===================================================== */
 
-function init(){
+function initCategories(){
 
 const cat=
 document.getElementById("cat");
 
-
-Object.keys(categoryNames).forEach(function(c){
+Object.keys(categoryNames).forEach(function(key){
 
 const option=
 document.createElement("option");
 
-option.value=c;
+option.value=key;
 
-option.textContent=
-categoryNames[c];
+option.textContent=categoryNames[key];
 
 cat.appendChild(option);
 
 });
 
-
-document.getElementById("year")
-.textContent=
-new Date().getFullYear();
-
-
-render();
-
-renderFeatured();
-
-loadStoreInfo();
-
-loadProductsFromFirebase();
-
 }
 
 
-/* =========================
-   RENDER FEATURED
-========================= */
+/* =====================================================
+   FEATURED
+===================================================== */
 
 function renderFeatured(){
 
 const box=
 document.getElementById("featured");
 
+const section=
+document.getElementById("featuredSection");
+
 const featured=
 products.filter(function(p){
 
 return p.isFeatured===true &&
-p.inStock!==false;
+p.inStock!==false &&
+isValidProduct(p);
 
 });
 
 
 if(!featured.length){
 
-document.getElementById("featuredSection")
-.style.display="none";
+section.style.display="none";
 
 return;
 
 }
 
-
-document.getElementById("featuredSection")
-.style.display="block";
+section.style.display="block";
 
 box.innerHTML="";
-
 
 featured.slice(0,8).forEach(function(p){
 
 const w=
-Array.isArray(p.weightOptions) &&
-p.weightOptions.length
-?p.weightOptions[0]
-:null;
+p.weightOptions.find(function(x){
+
+return x && Number(x.price)>=0;
+
+});
 
 if(!w)return;
-
 
 const item=
 document.createElement("div");
@@ -2406,10 +2323,10 @@ item.innerHTML=`
 
 <img
 class="featured-img"
-src="${escapeHtml(p.image)}"
+src="${escapeHtml(p.image||"")}"
 alt="${escapeHtml(p.name)}"
 loading="lazy"
-onerror="this.style.opacity='.35'"
+onerror="this.onerror=null;this.src='data:image/svg+xml;charset=UTF-8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;600&quot; height=&quot;400&quot;><rect width=&quot;100%&quot; height=&quot;100%&quot; fill=&quot;%23edf4ef&quot;/><text x=&quot;50%&quot; y=&quot;50%&quot; text-anchor=&quot;middle&quot; dominant-baseline=&quot;middle&quot; font-size=&quot;24&quot; fill=&quot;%23087443&quot;>তাজা ও খাঁটি মার্ট</text></svg>'"
 >
 
 <div class="featured-body">
@@ -2432,8 +2349,6 @@ openProduct(p.id);
 
 };
 
-item.style.cursor="pointer";
-
 box.appendChild(item);
 
 });
@@ -2441,28 +2356,36 @@ box.appendChild(item);
 }
 
 
-/* =========================
+/* =====================================================
    RENDER PRODUCTS
-========================= */
+===================================================== */
 
 function render(){
 
 const grid=
 document.getElementById("grid");
 
+if(!grid)return;
+
+const searchInput=
+document.getElementById("search");
+
+const categoryInput=
+document.getElementById("cat");
+
 const q=
-document.getElementById("search")
-.value
+(searchInput.value||"")
 .trim()
 .toLowerCase();
 
 const cat=
-document.getElementById("cat")
-.value;
+categoryInput.value;
 
 
 const list=
 products.filter(function(p){
+
+if(!isValidProduct(p))return false;
 
 const text=(
 (p.name||"")+" "+
@@ -2470,7 +2393,6 @@ const text=(
 (p.origin||"")+" "+
 (p.description||"")
 ).toLowerCase();
-
 
 return(
 (!q||text.includes(q)) &&
@@ -2489,13 +2411,9 @@ grid.innerHTML=`
 
 <div class="empty">
 
-<div style="font-size:40px">
-🔎
-</div>
+<div style="font-size:40px">🔎</div>
 
-<h3>
-কোনো পণ্য পাওয়া যায়নি
-</h3>
+<h3>কোনো পণ্য পাওয়া যায়নি</h3>
 
 <div>
 অন্য নামে বা অন্য ক্যাটাগরিতে খুঁজে দেখুন।
@@ -2512,14 +2430,18 @@ return;
 
 list.forEach(function(p){
 
-const w=
-Array.isArray(p.weightOptions) &&
-p.weightOptions.length
-?p.weightOptions[0]
-:null;
+const weight=
+p.weightOptions.find(function(w){
 
-if(!w)return;
+return w &&
+Number(w.price)>=0;
 
+});
+
+if(!weight)return;
+
+const stock=
+p.inStock!==false;
 
 const card=
 document.createElement("article");
@@ -2527,8 +2449,20 @@ document.createElement("article");
 card.className="card";
 
 
-const stock=
-p.inStock!==false;
+let oldPrice="";
+
+if(
+weight.originalPrice &&
+Number(weight.originalPrice)>Number(weight.price)
+){
+
+oldPrice=`
+<div class="old-price">
+${money(weight.originalPrice)}
+</div>
+`;
+
+}
 
 
 card.innerHTML=`
@@ -2537,18 +2471,16 @@ card.innerHTML=`
 
 <img
 class="product-image"
-src="${escapeHtml(p.image)}"
+src="${escapeHtml(p.image||"")}"
 alt="${escapeHtml(p.name)}"
 loading="lazy"
-onerror="this.style.opacity='.25'"
+onerror="this.onerror=null;this.src='data:image/svg+xml;charset=UTF-8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;600&quot; height=&quot;500&quot;><rect width=&quot;100%&quot; height=&quot;100%&quot; fill=&quot;%23edf4ef&quot;/><text x=&quot;50%&quot; y=&quot;50%&quot; text-anchor=&quot;middle&quot; dominant-baseline=&quot;middle&quot; font-size=&quot;24&quot; fill=&quot;%23087443&quot;>ছবি পাওয়া যায়নি</text></svg>'"
 >
 
 ${
 p.badge
 ?
-`<span class="badge">
-${escapeHtml(p.badge)}
-</span>`
+`<span class="badge">${escapeHtml(p.badge)}</span>`
 :
 ""
 }
@@ -2559,65 +2491,47 @@ ${stock?"✓ স্টকে আছে":"স্টক শেষ"}
 
 </div>
 
-
 <div class="card-body">
 
 <div class="product-name">
 ${escapeHtml(p.name)}
 </div>
 
-
 <div class="origin">
-🌍 ${escapeHtml(p.origin)}
+🌍 ${escapeHtml(p.origin||"")}
 </div>
-
 
 <div class="rating">
-
-<strong>★ ${p.rating||5}</strong>
-
-(${p.reviewsCount||0} রিভিউ)
-
+<strong>★ ${escapeHtml(p.rating||5)}</strong>
+(${escapeHtml(p.reviewsCount||0)} রিভিউ)
 </div>
-
 
 <div class="price-row">
 
 <div class="price">
-${money(w.price)}
+${money(weight.price)}
 </div>
 
-${
-w.originalPrice &&
-Number(w.originalPrice)>Number(w.price)
-?
-`<div class="old-price">
-${money(w.originalPrice)}
-</div>`
-:""
-}
+${oldPrice}
 
 </div>
-
 
 <div class="weight">
-📦 ${escapeHtml(w.label||"")}
+📦 ${escapeHtml(weight.label||"")}
 </div>
-
 
 <div class="card-actions">
 
 <button
 class="details-btn"
-onclick="openProduct('${escapeHtml(p.id)}')"
+data-id="${escapeHtml(p.id)}"
 >
 বিস্তারিত
 </button>
 
-
 <button
 class="add-btn"
-onclick="addToCart('${escapeHtml(p.id)}')"
+data-id="${escapeHtml(p.id)}"
 ${stock?"":"disabled"}
 >
 🛒 ${stock?"কার্টে যোগ":"স্টক শেষ"}
@@ -2629,6 +2543,28 @@ ${stock?"":"disabled"}
 
 `;
 
+
+const detailBtn=
+card.querySelector(".details-btn");
+
+const addBtn=
+card.querySelector(".add-btn");
+
+
+detailBtn.onclick=function(){
+
+openProduct(p.id);
+
+};
+
+
+addBtn.onclick=function(){
+
+addToCart(p.id);
+
+};
+
+
 grid.appendChild(card);
 
 });
@@ -2636,11 +2572,11 @@ grid.appendChild(card);
 }
 
 
-/* =========================
-   ADD TO CART
-========================= */
+/* =====================================================
+   ADD CART
+===================================================== */
 
-function addToCart(id){
+function addToCart(id,weightIndex=0){
 
 const p=
 products.find(function(x){
@@ -2650,7 +2586,13 @@ return x.id===id;
 });
 
 
-if(!p)return;
+if(!p||!isValidProduct(p)){
+
+alert("পণ্যটি পাওয়া যায়নি।");
+
+return;
+
+}
 
 if(p.inStock===false){
 
@@ -2662,13 +2604,17 @@ return;
 
 
 const option=
-Array.isArray(p.weightOptions) &&
-p.weightOptions.length
-?p.weightOptions[0]
-:null;
+p.weightOptions[weightIndex]||
+p.weightOptions[0];
 
 
-if(!option)return;
+if(!option){
+
+alert("এই পণ্যের ওজন তথ্য পাওয়া যায়নি।");
+
+return;
+
+}
 
 
 const found=
@@ -2676,7 +2622,7 @@ cart.find(function(x){
 
 return(
 x.id===id &&
-x.weight===option.weightInGrams
+x.weight===Number(option.weightInGrams)
 );
 
 });
@@ -2694,9 +2640,9 @@ id:p.id,
 
 name:p.name,
 
-weight:option.weightInGrams,
+weight:Number(option.weightInGrams)||0,
 
-label:option.label,
+label:option.label||"",
 
 price:Number(option.price)||0,
 
@@ -2714,9 +2660,9 @@ showToast("✅ পণ্যটি কার্টে যোগ হয়েছে")
 }
 
 
-/* =========================
+/* =====================================================
    TOAST
-========================= */
+===================================================== */
 
 function showToast(message){
 
@@ -2730,29 +2676,33 @@ document.createElement("div");
 
 toast.id="toast";
 
-toast.style.position="fixed";
+Object.assign(toast.style,{
 
-toast.style.left="50%";
+position:"fixed",
 
-toast.style.bottom="80px";
+left:"50%",
 
-toast.style.transform="translateX(-50%)";
+bottom:"75px",
 
-toast.style.zIndex="200";
+transform:"translateX(-50%)",
 
-toast.style.background="#10251b";
+zIndex:"200",
 
-toast.style.color="white";
+background:"#10251b",
 
-toast.style.padding="11px 17px";
+color:"white",
 
-toast.style.borderRadius="999px";
+padding:"10px 16px",
 
-toast.style.fontSize="13px";
+borderRadius:"999px",
 
-toast.style.fontWeight="800";
+fontSize:"12px",
 
-toast.style.boxShadow="0 8px 25px #0004";
+fontWeight:"850",
+
+boxShadow:"0 8px 25px #0004"
+
+});
 
 document.body.appendChild(toast);
 
@@ -2769,39 +2719,80 @@ setTimeout(function(){
 
 toast.style.display="none";
 
-},1800);
+},1700);
 
 }
 
 
-/* =========================
-   UPDATE COUNT
-========================= */
+/* =====================================================
+   COUNT
+===================================================== */
 
 function updateCount(){
 
-document.getElementById("count")
-.textContent=
+const count=
+document.getElementById("count");
+
+const total=
 cart.reduce(function(sum,item){
 
 return sum+item.qty;
 
 },0);
 
+count.textContent=total;
+
+count.classList.remove("bump");
+
+void count.offsetWidth;
+
+if(total>0){
+
+count.classList.add("bump");
+
+}
+
 }
 
 
-/* =========================
-   OPEN CART
-========================= */
+/* =====================================================
+   CART
+===================================================== */
 
 function openCart(){
+
+renderCart();
+
+document
+.getElementById("cartModal")
+.classList.add("open");
+
+}
+
+
+function closeCart(){
+
+document
+.getElementById("cartModal")
+.classList.remove("open");
+
+}
+
+
+/* =====================================================
+   RENDER CART
+===================================================== */
+
+function renderCart(){
 
 const box=
 document.getElementById("cartItems");
 
 const summary=
 document.getElementById("cartSummary");
+
+const form=
+document.getElementById("orderForm");
 
 
 if(!cart.length){
@@ -2810,15 +2801,11 @@ box.innerHTML=`
 
 <div style="text-align:center;padding:30px 10px">
 
-<div style="font-size:42px">
-🛒
-</div>
+<div style="font-size:42px">🛒</div>
 
-<h3>
-কার্ট এখন খালি
-</h3>
+<h3>কার্ট এখন খালি</h3>
 
-<p style="color:#77827b;font-size:13px">
+<p style="color:#77827b;font-size:12px">
 পছন্দের পণ্য কার্টে যোগ করুন।
 </p>
 
@@ -2828,7 +2815,11 @@ box.innerHTML=`
 
 summary.innerHTML="";
 
-}else{
+form.innerHTML="";
+
+return;
+
+}
 
 
 box.innerHTML=
@@ -2852,22 +2843,15 @@ ${escapeHtml(x.label)}
 ${money(x.price*x.qty)}
 </div>
 
-
 <div class="qty">
 
-<button
-onclick="changeQty(${i},-1)"
->
+<button onclick="changeQty(${i},-1)">
 −
 </button>
 
-<span>
-${x.qty}
-</span>
+<span>${x.qty}</span>
 
-<button
-onclick="changeQty(${i},1)"
->
+<button onclick="changeQty(${i},1)">
 +
 </button>
 
@@ -2894,14 +2878,34 @@ const threshold=
 Number(storeInfo.freeDeliveryThreshold)||2500;
 
 
+/*
+ Default হিসেবে সদরপুরের delivery
+*/
+
+const dhakaDelivery=
+Number(storeInfo.deliveryChargeDhaka)||60;
+
+const outsideDelivery=
+Number(storeInfo.deliveryChargeOutside)||120;
+
+
+/*
+ customer area অনুযায়ী delivery
+*/
+
+const areaValue=
+localStorage.getItem("tajaDeliveryArea")||"outside";
+
+
 const delivery=
 subtotal>=threshold
 ?0
-:Number(storeInfo.deliveryChargeOutside)||120;
+:(areaValue==="dhaka"
+?dhakaDelivery
+:outsideDelivery);
 
 
-const total=
-subtotal+delivery;
+const total=subtotal+delivery;
 
 
 summary.innerHTML=`
@@ -2909,46 +2913,67 @@ summary.innerHTML=`
 <div class="cart-summary">
 
 <div class="summary-line">
-
-<span>
-পণ্যের মূল্য
-</span>
-
-<b>
-${money(subtotal)}
-</b>
-
+<span>পণ্যের মূল্য</span>
+<b>${money(subtotal)}</b>
 </div>
-
 
 <div class="summary-line">
-
-<span>
-ডেলিভারি
-</span>
-
+<span>ডেলিভারি</span>
 <b>
-${
-delivery===0
-?"ফ্রি"
-:money(delivery)
-}
+${delivery===0?"ফ্রি":money(delivery)}
 </b>
-
 </div>
-
 
 <div class="summary-line summary-total">
-
-<span>
-সর্বমোট
-</span>
-
-<b>
-${money(total)}
-</b>
+<span>সর্বমোট</span>
+<b>${money(total)}</b>
+</div>
 
 </div>
+
+`;
+
+
+form.innerHTML=`
+
+<div class="order-form">
+
+<input
+id="customerName"
+placeholder="আপনার নাম *"
+autocomplete="name"
+>
+
+<input
+id="customerPhone"
+placeholder="মোবাইল নম্বর *"
+inputmode="tel"
+autocomplete="tel"
+>
+
+<select
+id="deliveryArea"
+onchange="saveDeliveryArea();renderCart()"
+>
+
+<option value="outside"
+${areaValue==="outside"?"selected":""}
+>
+সদরপুরের বাইরে — ${money(outsideDelivery)}
+</option>
+
+<option value="dhaka"
+${areaValue==="dhaka"?"selected":""}
+>
+সদরপুর — ${money(dhakaDelivery)}
+</option>
+
+</select>
+
+<textarea
+id="customerAddress"
+placeholder="ডেলিভারি ঠিকানা *"
+></textarea>
 
 </div>
 
@@ -2957,29 +2982,30 @@ ${money(total)}
 }
 
 
-document
-.getElementById("cartModal")
-.classList.add("open");
+/* =====================================================
+   SAVE DELIVERY AREA
+===================================================== */
+
+function saveDeliveryArea(){
+
+const select=
+document.getElementById("deliveryArea");
+
+if(select){
+
+localStorage.setItem(
+"tajaDeliveryArea",
+select.value
+);
+
+}
 
 }
 
 
-/* =========================
-   CLOSE CART
-========================= */
-
-function closeCart(){
-
-document
-.getElementById("cartModal")
-.classList.remove("open");
-
-}
-
-
-/* =========================
-   CHANGE QTY
-========================= */
+/* =====================================================
+   QTY
+===================================================== */
 
 function changeQty(index,change){
 
@@ -2987,24 +3013,22 @@ if(!cart[index])return;
 
 cart[index].qty+=change;
 
-
 if(cart[index].qty<=0){
 
 cart.splice(index,1);
 
 }
 
-
 updateCount();
 
-openCart();
+renderCart();
 
 }
 
 
-/* =========================
+/* =====================================================
    PRODUCT DETAILS
-========================= */
+===================================================== */
 
 function openProduct(id){
 
@@ -3016,6 +3040,37 @@ return x.id===id;
 });
 
 
+if(!p||!isValidProduct(p))return;
+
+
+selectedDetail.id=id;
+
+selectedDetail.weightIndex=0;
+
+
+renderProductDetails();
+
+
+document
+.getElementById("productModal")
+.classList.add("open");
+
+}
+
+
+/* =====================================================
+   RENDER PRODUCT DETAILS
+===================================================== */
+
+function renderProductDetails(){
+
+const p=
+products.find(function(x){
+
+return x.id===selectedDetail.id;
+
+});
+
 if(!p)return;
 
 
@@ -3024,58 +3079,46 @@ document.getElementById("productDetails");
 
 
 const options=
-Array.isArray(p.weightOptions)
-?p.weightOptions
-:[];
-
-
-const first=
-options[0];
+p.weightOptions||[];
 
 
 details.innerHTML=`
 
 <img
 class="detail-img"
-src="${escapeHtml(p.image)}"
+src="${escapeHtml(p.image||"")}"
 alt="${escapeHtml(p.name)}"
-onerror="this.style.opacity='.25'"
+onerror="this.onerror=null;this.style.opacity='.25'"
 >
-
 
 <div class="detail-name">
 ${escapeHtml(p.name)}
 </div>
 
-
 <div class="detail-origin">
-🌍 ${escapeHtml(p.origin)}
+🌍 ${escapeHtml(p.origin||"")}
 </div>
 
+<div style="margin-top:8px;color:#e19a00;font-weight:950">
 
-<div style="margin-top:8px;color:#e19a00;font-weight:900">
+★ ${escapeHtml(p.rating||5)}
 
-★ ${p.rating||5}
-
-<span style="color:#758078;font-size:12px">
-(${p.reviewsCount||0} রিভিউ)
+<span style="color:#758078;font-size:11px">
+(${escapeHtml(p.reviewsCount||0)} রিভিউ)
 </span>
 
 </div>
 
-
 <div class="detail-desc">
-${escapeHtml(p.description)}
+${escapeHtml(p.description||"")}
 </div>
 
-
 ${
-Array.isArray(p.features) &&
-p.features.length
+Array.isArray(p.features)&&p.features.length
 ?
 `
 
-<h3 style="font-size:16px">
+<h3 style="font-size:15px">
 ✨ পণ্যের বৈশিষ্ট্য
 </h3>
 
@@ -3093,11 +3136,9 @@ return `<li>${escapeHtml(f)}</li>`;
 :""
 }
 
-
-<h3 style="font-size:16px">
+<h3 style="font-size:15px">
 📦 ওজন নির্বাচন করুন
 </h3>
-
 
 <div class="weight-options">
 
@@ -3106,11 +3147,12 @@ ${options.map(function(w,i){
 return`
 
 <button
-class="weight-option ${i===0?"active":""}"
-onclick="selectDetailWeight(this,${w.price})"
+class="weight-option ${i===selectedDetail.weightIndex?"active":""}"
+onclick="selectDetailWeight(${i})"
 >
 
-${escapeHtml(w.label)}
+${escapeHtml(w.label||"")}
+
 <br>
 
 <strong>
@@ -3125,11 +3167,10 @@ ${money(w.price)}
 
 </div>
 
-
 <button
 class="add-btn"
 style="width:100%;margin-top:16px;padding:13px"
-onclick="addToCart('${escapeHtml(p.id)}');closeProductModal()"
+onclick="addSelectedProduct()"
 ${p.inStock===false?"disabled":""}
 >
 
@@ -3143,32 +3184,43 @@ p.inStock===false
 
 `;
 
-document
-.getElementById("productModal")
-.classList.add("open");
+}
+
+
+/* =====================================================
+   SELECT WEIGHT
+===================================================== */
+
+function selectDetailWeight(index){
+
+selectedDetail.weightIndex=index;
+
+renderProductDetails();
 
 }
 
 
-function selectDetailWeight(button,price){
+/* =====================================================
+   ADD SELECTED PRODUCT
+===================================================== */
 
-document
-.querySelectorAll(".weight-option")
-.forEach(function(btn){
+function addSelectedProduct(){
 
-btn.classList.remove("active");
+if(!selectedDetail.id)return;
 
-});
+addToCart(
+selectedDetail.id,
+selectedDetail.weightIndex
+);
 
-
-button.classList.add("active");
+closeProductModal();
 
 }
 
 
-/* =========================
+/* =====================================================
    CLOSE PRODUCT
-========================= */
+===================================================== */
 
 function closeProductModal(){
 
@@ -3179,9 +3231,9 @@ document
 }
 
 
-/* =========================
-   SEND ORDER
-========================= */
+/* =====================================================
+   SEND WHATSAPP ORDER
+===================================================== */
 
 function sendOrder(){
 
@@ -3194,22 +3246,61 @@ return;
 }
 
 
-let text=
-"🛍️ *তাজা ও খাঁটি মার্ট - নতুন অর্ডার*%0A%0A";
+const name=
+(document.getElementById("customerName")?.value||"")
+.trim();
+
+const phone=
+(document.getElementById("customerPhone")?.value||"")
+.trim();
+
+const address=
+(document.getElementById("customerAddress")?.value||"")
+.trim();
+
+const area=
+document.getElementById("deliveryArea")?.value||"outside";
 
 
-cart.forEach(function(x,i){
+if(!name){
 
-text+=
-`${i+1}. ${x.name}%0A`;
+alert("আপনার নাম লিখুন।");
 
-text+=
-`পরিমাণ: ${x.label} × ${x.qty}%0A`;
+return;
 
-text+=
-`মূল্য: ৳${x.price*x.qty}%0A%0A`;
+}
 
-});
+if(!phone){
+
+alert("আপনার মোবাইল নম্বর লিখুন।");
+
+return;
+
+}
+
+if(!address){
+
+alert("আপনার ডেলিভারি ঠিকানা লিখুন।");
+
+return;
+
+}
+
+
+localStorage.setItem(
+"tajaCustomerName",
+name
+);
+
+localStorage.setItem(
+"tajaCustomerPhone",
+phone
+);
+
+localStorage.setItem(
+"tajaCustomerAddress",
+address
+);
 
 
 const subtotal=
@@ -3223,58 +3314,114 @@ return sum+x.price*x.qty;
 const threshold=
 Number(storeInfo.freeDeliveryThreshold)||2500;
 
+const dhakaDelivery=
+Number(storeInfo.deliveryChargeDhaka)||60;
+
+const outsideDelivery=
+Number(storeInfo.deliveryChargeOutside)||120;
+
 
 const delivery=
 subtotal>=threshold
 ?0
-:Number(storeInfo.deliveryChargeOutside)||120;
+:(area==="dhaka"
+?dhakaDelivery
+:outsideDelivery);
 
 
-const total=
-subtotal+delivery;
+const total=subtotal+delivery;
+
+
+let text=
+"🛍️ তাজা ও খাঁটি মার্ট - নতুন অর্ডার\n\n";
 
 
 text+=
-`পণ্যের মোট: ৳${subtotal}%0A`;
+"👤 নাম: "+name+"\n";
 
 text+=
-`ডেলিভারি: ${
-delivery===0
-?"ফ্রি"
-:"৳"+delivery
-}%0A`;
+"📱 মোবাইল: "+phone+"\n";
 
 text+=
-`সর্বমোট: ৳${total}%0A%0A`;
+"📍 এলাকা: "+
+(area==="dhaka"?"সদরপুর":"সদরপুরের বাইরে")+
+"\n";
 
 text+=
-"📍 ডেলিভারি ঠিকানা: ";
+"🏠 ঠিকানা: "+address+"\n\n";
+
+
+text+="🛒 পণ্যের তালিকা:\n\n";
+
+
+cart.forEach(function(x,i){
+
+text+=
+(i+1)+". "+x.name+"\n";
+
+text+=
+"ওজন: "+x.label+"\n";
+
+text+=
+"পরিমাণ: "+x.qty+"\n";
+
+text+=
+"মূল্য: ৳"+(x.price*x.qty)+"\n\n";
+
+});
+
+
+text+="--------------------\n";
+
+text+="পণ্যের মোট: ৳"+subtotal+"\n";
+
+text+=
+"ডেলিভারি: "+
+(delivery===0?"ফ্রি":"৳"+delivery)+
+"\n";
+
+text+="সর্বমোট: ৳"+total+"\n\n";
+
+text+="ধন্যবাদ।";
 
 
 let whatsapp=
-String(storeInfo.whatsapp||"01341605531")
+String(
+storeInfo.whatsapp||
+storeInfo.phone||
+DEFAULT_STORE.whatsapp
+)
 .replace(/\D/g,"");
 
 
 if(whatsapp.startsWith("01")){
 
-whatsapp=
-"88"+whatsapp;
+whatsapp="88"+whatsapp;
+
+}
+
+if(!whatsapp){
+
+whatsapp="8801341605531";
 
 }
 
 
-window.open(
-"https://wa.me/"+whatsapp+"?text="+text,
-"_blank"
-);
+const url=
+"https://wa.me/"+
+whatsapp+
+"?text="+
+encodeURIComponent(text);
+
+
+window.open(url,"_blank");
 
 }
 
 
-/* =========================
+/* =====================================================
    NAVIGATION
-========================= */
+===================================================== */
 
 function scrollToTop(){
 
@@ -3317,9 +3464,89 @@ document
 }
 
 
-/* =========================
+/* =====================================================
+   LOAD SAVED CUSTOMER INFO
+===================================================== */
+
+function loadSavedCustomer(){
+
+const name=
+localStorage.getItem("tajaCustomerName");
+
+const phone=
+localStorage.getItem("tajaCustomerPhone");
+
+const address=
+localStorage.getItem("tajaCustomerAddress");
+
+if(name){
+
+const el=document.getElementById("customerName");
+
+if(el)el.value=name;
+
+}
+
+if(phone){
+
+const el=document.getElementById("customerPhone");
+
+if(el)el.value=phone;
+
+}
+
+if(address){
+
+const el=document.getElementById("customerAddress");
+
+if(el)el.value=address;
+
+}
+
+}
+
+
+/* =====================================================
+   INIT
+===================================================== */
+
+function init(){
+
+initCategories();
+
+document.getElementById("year").textContent=
+new Date().getFullYear();
+
+
+/*
+ প্রথমেই fallback products render হবে।
+ তাই Firebase load হতে সময় লাগলেও
+ product কখনো blank হবে না।
+*/
+
+products=[...fallbackProducts];
+
+render();
+
+renderFeatured();
+
+updateCount();
+
+
+/*
+ তারপর Firebase data load হবে।
+*/
+
+loadStoreInfo();
+
+loadProductsFromFirebase();
+
+}
+
+
+/* =====================================================
    START
-========================= */
+===================================================== */
 
 init();
 
