@@ -5,12 +5,15 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>তাজা ও খাঁটি মার্ট - Admin</title>
 
+<!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/12.7.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/12.7.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore-compat.js"></script>
 
 <style>
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
 body{
   margin:0;
@@ -49,17 +52,21 @@ h2{
   color:#0d6b3d;
 }
 
-input,textarea,select{
+input,
+textarea,
+select{
   width:100%;
   padding:12px;
   margin:6px 0 12px;
   border:1px solid #ccd8d0;
   border-radius:10px;
   font-size:15px;
+  font-family:inherit;
 }
 
 textarea{
   min-height:90px;
+  resize:vertical;
 }
 
 button{
@@ -69,6 +76,11 @@ button{
   margin:4px;
   cursor:pointer;
   font-size:15px;
+  font-family:inherit;
+}
+
+button:active{
+  transform:scale(.98);
 }
 
 .primary{
@@ -83,6 +95,7 @@ button{
 
 .gray{
   background:#e7ece9;
+  color:#17221a;
 }
 
 .product{
@@ -107,7 +120,7 @@ button{
 }
 
 .hidden{
-  display:none;
+  display:none !important;
 }
 
 .status{
@@ -115,6 +128,22 @@ button{
   border-radius:9px;
   margin:10px 0;
   background:#eef7f1;
+}
+
+.error{
+  padding:10px;
+  border-radius:9px;
+  margin:10px 0;
+  background:#ffebee;
+  color:#b71c1c;
+}
+
+.success{
+  padding:10px;
+  border-radius:9px;
+  margin:10px 0;
+  background:#e8f5e9;
+  color:#1b5e20;
 }
 
 .login{
@@ -136,9 +165,49 @@ button{
   padding:10px 0;
 }
 
+.checkbox{
+  width:auto !important;
+  margin-right:6px;
+}
+
+.price-box{
+  background:#f7faf8;
+  border:1px solid #e0e8e3;
+  border-radius:12px;
+  padding:12px;
+  margin:10px 0;
+}
+
+.loading{
+  text-align:center;
+  padding:20px;
+  color:#666;
+}
+
 @media(max-width:600px){
+
+  .container{
+    padding:10px;
+  }
+
+  .card{
+    padding:14px;
+  }
+
   .row{
     display:block;
+  }
+
+  .row button{
+    margin-top:10px;
+  }
+
+  header h1{
+    font-size:19px;
+  }
+
+  button{
+    width:auto;
   }
 }
 </style>
@@ -152,7 +221,11 @@ button{
   </div>
 </header>
 
-<!-- LOGIN -->
+
+<!-- =====================================================
+     LOGIN PAGE
+===================================================== -->
+
 <div id="loginPage" class="container">
 
   <div class="card login">
@@ -163,19 +236,28 @@ button{
       Firebase Email/Password দিয়ে লগইন করুন।
     </p>
 
-    <input ঋদ্ধ
+    <label>Admin Email</label>
+
+    <input
       id="email"
       type="email"
       placeholder="Admin Email"
+      autocomplete="username"
     >
+
+    <label>Password</label>
 
     <input
       id="password"
       type="password"
       placeholder="Password"
+      autocomplete="current-password"
     >
 
-    <button class="primary" onclick="login()">
+    <button
+      class="primary"
+      id="loginButton"
+      onclick="login()">
       Login
     </button>
 
@@ -186,19 +268,28 @@ button{
 </div>
 
 
-<!-- ADMIN PANEL -->
+
+<!-- =====================================================
+     ADMIN PAGE
+===================================================== -->
+
 <div id="adminPage" class="container hidden">
+
+
+  <!-- ADMIN HEADER -->
 
   <div class="card">
 
     <div class="row">
 
       <div>
-        <b>Admin Panel</b>
+        <b>👤 Admin Panel</b>
         <div id="userEmail" class="small"></div>
       </div>
 
-      <button class="danger" onclick="logout()">
+      <button
+        class="danger"
+        onclick="logout()">
         Logout
       </button>
 
@@ -207,45 +298,119 @@ button{
   </div>
 
 
-  <!-- STORE INFORMATION -->
+
+  <!-- =====================================================
+       STORE INFORMATION
+  ===================================================== -->
+
   <div class="card">
 
     <h2>🏪 দোকানের তথ্য</h2>
 
     <label>দোকানের নাম</label>
-    <input id="storeName">
+
+    <input
+      id="storeName"
+      placeholder="দোকানের নাম"
+    >
+
 
     <label>Tagline</label>
-    <input id="storeTagline">
+
+    <input
+      id="storeTagline"
+      placeholder="দোকানের Tagline"
+    >
+
 
     <label>ফোন</label>
-    <input id="storePhone">
+
+    <input
+      id="storePhone"
+      placeholder="ফোন নম্বর"
+    >
+
 
     <label>WhatsApp</label>
-    <input id="storeWhatsapp">
+
+    <input
+      id="storeWhatsapp"
+      placeholder="WhatsApp নম্বর"
+    >
+
 
     <label>bKash</label>
-    <input id="storeBkash">
+
+    <input
+      id="storeBkash"
+      placeholder="bKash নম্বর"
+    >
+
 
     <label>Nagad</label>
-    <input id="storeNagad">
+
+    <input
+      id="storeNagad"
+      placeholder="Nagad নম্বর"
+    >
+
 
     <label>Email</label>
-    <input id="storeEmail">
+
+    <input
+      id="storeEmail"
+      type="email"
+      placeholder="Email"
+    >
+
 
     <label>ঠিকানা</label>
-    <textarea id="storeAddress"></textarea>
 
-    <label>ঢাকার ভিতরে Delivery Charge</label>
-    <input id="deliveryDhaka" type="number">
+    <textarea
+      id="storeAddress"
+      placeholder="দোকানের ঠিকানা">
+    </textarea>
 
-    <label>ঢাকার বাইরে Delivery Charge</label>
-    <input id="deliveryOutside" type="number">
 
-    <label>কত টাকার অর্ডারে Free Delivery</label>
-    <input id="freeDelivery" type="number">
+    <label>
+      ঢাকার ভিতরে Delivery Charge
+    </label>
 
-    <button class="primary" onclick="saveStoreInfo()">
+    <input
+      id="deliveryDhaka"
+      type="number"
+      min="0"
+      placeholder="60"
+    >
+
+
+    <label>
+      ঢাকার বাইরে Delivery Charge
+    </label>
+
+    <input
+      id="deliveryOutside"
+      type="number"
+      min="0"
+      placeholder="120"
+    >
+
+
+    <label>
+      কত টাকার অর্ডারে Free Delivery
+    </label>
+
+    <input
+      id="freeDelivery"
+      type="number"
+      min="0"
+      placeholder="2500"
+    >
+
+
+    <button
+      class="primary"
+      onclick="saveStoreInfo()">
       💾 দোকানের তথ্য সংরক্ষণ
     </button>
 
@@ -254,115 +419,264 @@ button{
   </div>
 
 
-  <!-- PRODUCT FORM -->
+
+  <!-- =====================================================
+       PRODUCT FORM
+  ===================================================== -->
+
   <div class="card">
 
-    <h2 id="formTitle">➕ নতুন পণ্য যোগ করুন</h2>
+    <h2 id="formTitle">
+      ➕ নতুন পণ্য যোগ করুন
+    </h2>
 
-    <input id="productId" type="hidden">
+
+    <input
+      id="productId"
+      type="hidden"
+    >
+
 
     <label>পণ্যের নাম</label>
-    <input id="pName" placeholder="যেমন: ইরানি জাহেদি খেজুর">
+
+    <input
+      id="pName"
+      placeholder="যেমন: ইরানি জাহেদি খেজুর"
+    >
+
 
     <label>English Name</label>
-    <input id="pEnglish" placeholder="English product name">
+
+    <input
+      id="pEnglish"
+      placeholder="English product name"
+    >
+
 
     <label>Category</label>
-    <input id="pCategory" placeholder="খেজুর / বাদাম / ফল">
+
+    <input
+      id="pCategory"
+      placeholder="খেজুর / বাদাম / ফল"
+    >
+
 
     <label>Badge</label>
-    <input id="pBadge" placeholder="জনপ্রিয় / নতুন">
+
+    <input
+      id="pBadge"
+      placeholder="জনপ্রিয় / নতুন"
+    >
+
 
     <label>ছবির URL</label>
-    <input id="pImage" placeholder="https://...">
+
+    <input
+      id="pImage"
+      type="url"
+      placeholder="https://..."
+    >
+
 
     <label>বর্ণনা</label>
-    <textarea id="pDescription"></textarea>
+
+    <textarea
+      id="pDescription"
+      placeholder="পণ্যের বর্ণনা">
+    </textarea>
+
 
     <label>Origin</label>
-    <input id="pOrigin">
+
+    <input
+      id="pOrigin"
+      placeholder="যেমন: Iran"
+    >
+
 
     <label>Features</label>
-    <textarea id="pFeatures" placeholder="এক লাইনে একটি feature লিখতে পারো"></textarea>
+
+    <textarea
+      id="pFeatures"
+      placeholder="এক লাইনে একটি feature লিখতে পারো">
+    </textarea>
+
 
     <label>Rating</label>
-    <input id="pRating" type="number" step="0.1" value="5">
+
+    <input
+      id="pRating"
+      type="number"
+      step="0.1"
+      min="0"
+      max="5"
+      value="5"
+    >
+
 
     <label>Reviews Count</label>
-    <input id="pReviews" type="number" value="0">
+
+    <input
+      id="pReviews"
+      type="number"
+      min="0"
+      value="0"
+    >
+
 
     <label>
-      <input id="pStock" type="checkbox" checked style="width:auto">
+      <input
+        id="pStock"
+        type="checkbox"
+        checked
+        class="checkbox"
+      >
       Stock আছে
     </label>
 
     <br>
 
+
     <label>
-      <input id="pFeatured" type="checkbox" style="width:auto">
+      <input
+        id="pFeatured"
+        type="checkbox"
+        class="checkbox"
+      >
       Featured Product
     </label>
 
-    <h3>📦 ওজন ও দাম</h3>
 
-    <label>ওজন ১</label>
-    <input id="w1" placeholder="500g">
+    <!-- WEIGHT 1 -->
 
-    <label>দাম ১</label>
-    <input id="p1" type="number">
+    <div class="price-box">
 
-    <label>পুরনো দাম ১</label>
-    <input id="o1" type="number">
+      <h3>📦 ওজন ও দাম — ১</h3>
 
-    <label>ওজন ২</label>
-    <input id="w2" placeholder="1kg">
+      <label>ওজন</label>
 
-    <label>দাম ২</label>
-    <input id="p2" type="number">
+      <input
+        id="w1"
+        placeholder="500g"
+      >
 
-    <label>পুরনো দাম ২</label>
-    <input id="o2" type="number">
+      <label>দাম</label>
 
-    <button class="primary" onclick="saveProduct()">
+      <input
+        id="p1"
+        type="number"
+        min="0"
+        placeholder="280"
+      >
+
+      <label>পুরনো দাম</label>
+
+      <input
+        id="o1"
+        type="number"
+        min="0"
+        placeholder="320"
+      >
+
+    </div>
+
+
+    <!-- WEIGHT 2 -->
+
+    <div class="price-box">
+
+      <h3>📦 ওজন ও দাম — ২</h3>
+
+      <label>ওজন</label>
+
+      <input
+        id="w2"
+        placeholder="1kg"
+      >
+
+      <label>দাম</label>
+
+      <input
+        id="p2"
+        type="number"
+        min="0"
+        placeholder="540"
+      >
+
+      <label>পুরনো দাম</label>
+
+      <input
+        id="o2"
+        type="number"
+        min="0"
+        placeholder="600"
+      >
+
+    </div>
+
+
+    <button
+      class="primary"
+      onclick="saveProduct()">
       💾 পণ্য সংরক্ষণ
     </button>
 
-    <button class="gray" onclick="clearForm()">
+
+    <button
+      class="gray"
+      onclick="clearForm()">
       নতুন করে লিখুন
     </button>
+
 
     <div id="productStatus"></div>
 
   </div>
 
 
-  <!-- PRODUCTS -->
+
+  <!-- =====================================================
+       PRODUCTS
+  ===================================================== -->
+
   <div class="card">
 
     <h2>📦 সব পণ্য</h2>
 
-    <button class="primary" onclick="loadProducts()">
+    <button
+      class="primary"
+      onclick="loadProducts()">
       🔄 পণ্য Refresh
     </button>
 
     <div id="productsList">
-      Loading...
+      <div class="loading">
+        পণ্য লোড হচ্ছে...
+      </div>
     </div>
 
   </div>
 
 
-  <!-- ORDERS -->
+
+  <!-- =====================================================
+       ORDERS
+  ===================================================== -->
+
   <div class="card">
 
     <h2>🛒 অর্ডার</h2>
 
-    <button class="primary" onclick="loadOrders()">
+    <button
+      class="primary"
+      onclick="loadOrders()">
       🔄 অর্ডার Refresh
     </button>
 
     <div id="ordersList">
-      অর্ডার লোড হচ্ছে...
+      <div class="loading">
+        অর্ডার লোড হচ্ছে...
+      </div>
     </div>
 
   </div>
@@ -370,450 +684,967 @@ button{
 </div>
 
 
+
 <script>
 
-/* =========================
+/* =====================================================
    FIREBASE CONFIG
-========================= */
+===================================================== */
 
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyAeFSsPm1IxJs25w7B1Rwa98sBhZQYqF7s",
-  authDomain: "taja-mart-f2246.firebaseapp.com",
-  projectId: "taja-mart-f2246",
-  storageBucket: "taja-mart-f2246.firebasestorage.app",
-  messagingSenderId: "147195806814",
-  appId: "1:147195806814:web:710a33b7468c7d6ff860cf",
-  measurementId: "G-NFG1FFYJ62"
+
+  apiKey:
+    "AIzaSyAeFSsPm1IxJs25w7B1Rwa98sBhZQYqF7s",
+
+  authDomain:
+    "taja-mart-f2246.firebaseapp.com",
+
+  projectId:
+    "taja-mart-f2246",
+
+  storageBucket:
+    "taja-mart-f2246.firebasestorage.app",
+
+  messagingSenderId:
+    "147195806814",
+
+  appId:
+    "1:147195806814:web:710a33b7468c7d6ff860cf",
+
+  measurementId:
+    "G-NFG1FFYJ62"
+
 };
 
 
-/* =========================
+
+/* =====================================================
    FIREBASE START
-========================= */
+===================================================== */
 
-firebase.initializeApp(firebaseConfig);
+let auth = null;
+let db = null;
 
-const auth = firebase.auth();
-const db = firebase.firestore();
+try {
 
+  if(!firebase.apps.length){
 
-/* =========================
-   LOGIN STATE
-========================= */
-
-auth.onAuthStateChanged(function(user){
-
-  if(user){
-
-    document.getElementById("loginPage")
-      .classList.add("hidden");
-
-    document.getElementById("adminPage")
-      .classList.remove("hidden");
-
-    document.getElementById("userEmail")
-      .innerText = user.email || "";
-
-    loadStoreInfo();
-    loadProducts();
-    loadOrders();
-
-  }else{
-
-    document.getElementById("loginPage")
-      .classList.remove("hidden");
-
-    document.getElementById("adminPage")
-      .classList.add("hidden");
+    firebase.initializeApp(firebaseConfig);
 
   }
 
-});
+  auth = firebase.auth();
 
+  db = firebase.firestore();
 
-/* =========================
-   LOGIN
-========================= */
+}
+catch(error){
 
-function login(){
-  const status = document.getElementById("loginStatus");
+  console.error(
+    "Firebase শুরু করার সমস্যা:",
+    error
+  );
 
-  try {
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value;
+  const status =
+    document.getElementById("loginStatus");
 
-    if(!email || !password){
-      status.innerText = "Email ও Password দিন।";
-      return;
-    }
+  if(status){
 
-    status.innerText = "Login হচ্ছে...";
-
-    if(typeof auth === "undefined" || !auth){
-      status.innerText = "Firebase Auth চালু হয়নি।";
-      return;
-    }
-
-    auth.signInWithEmailAndPassword(email,password)
-      .then(function(){
-        status.innerText = "Login সফল হয়েছে।";
-      })
-      .catch(function(error){
-        status.innerText =
-          "Login সমস্যা: " + (error.code || "") + " — " + error.message;
-      });
-
-  } catch(error) {
     status.innerText =
-      "JavaScript সমস্যা: " + error.message;
+      "❌ Firebase চালু হয়নি: " +
+      error.message;
+
   }
+
 }
 
-/* =========================
+
+
+/* =====================================================
+   AUTH STATE
+===================================================== */
+
+if(auth){
+
+  auth.onAuthStateChanged(function(user){
+
+    if(user){
+
+      document
+        .getElementById("loginPage")
+        .classList.add("hidden");
+
+      document
+        .getElementById("adminPage")
+        .classList.remove("hidden");
+
+      document
+        .getElementById("userEmail")
+        .innerText =
+        user.email || "";
+
+      loadStoreInfo();
+      loadProducts();
+      loadOrders();
+
+    }
+    else{
+
+      document
+        .getElementById("loginPage")
+        .classList.remove("hidden");
+
+      document
+        .getElementById("adminPage")
+        .classList.add("hidden");
+
+    }
+
+  });
+
+}
+
+
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+function login(){
+
+  const status =
+    document.getElementById("loginStatus");
+
+  const button =
+    document.getElementById("loginButton");
+
+
+  try{
+
+    const email =
+      document
+        .getElementById("email")
+        .value
+        .trim();
+
+    const password =
+      document
+        .getElementById("password")
+        .value;
+
+
+    if(!email){
+
+      status.innerText =
+        "❌ Admin Email দিন।";
+
+      return;
+
+    }
+
+
+    if(!password){
+
+      status.innerText =
+        "❌ Password দিন।";
+
+      return;
+
+    }
+
+
+    if(!auth){
+
+      status.innerText =
+        "❌ Firebase Auth চালু হয়নি।";
+
+      return;
+
+    }
+
+
+    button.disabled = true;
+
+    button.innerText =
+      "Login হচ্ছে...";
+
+    status.className =
+      "status";
+
+    status.innerText =
+      "Firebase-এর সাথে সংযোগ হচ্ছে...";
+
+
+    auth
+      .signInWithEmailAndPassword(
+        email,
+        password
+      )
+
+      .then(function(){
+
+        status.className =
+          "success";
+
+        status.innerText =
+          "✅ Login সফল হয়েছে।";
+
+      })
+
+      .catch(function(error){
+
+        console.error(
+          "Login Error:",
+          error
+        );
+
+
+        let message =
+          "Login সমস্যা হয়েছে।";
+
+
+        if(error.code ===
+          "auth/user-not-found"){
+
+          message =
+            "❌ এই Email দিয়ে কোনো Admin account পাওয়া যায়নি।";
+
+        }
+
+        else if(error.code ===
+          "auth/wrong-password"){
+
+          message =
+            "❌ Password সঠিক নয়।";
+
+        }
+
+        else if(error.code ===
+          "auth/invalid-credential"){
+
+          message =
+            "❌ Email অথবা Password সঠিক নয়।";
+
+        }
+
+        else if(error.code ===
+          "auth/invalid-email"){
+
+          message =
+            "❌ Email ঠিকভাবে লিখুন।";
+
+        }
+
+        else if(error.code ===
+          "auth/too-many-requests"){
+
+          message =
+            "❌ অনেকবার চেষ্টা হয়েছে। কিছুক্ষণ পরে আবার চেষ্টা করুন।";
+
+        }
+
+        else if(error.code ===
+          "auth/network-request-failed"){
+
+          message =
+            "❌ Internet connection সমস্যা।";
+
+        }
+
+        else{
+
+          message =
+            "❌ Login সমস্যা: " +
+            (error.code || "") +
+            " — " +
+            (error.message || "");
+
+        }
+
+
+        status.className =
+          "error";
+
+        status.innerText =
+          message;
+
+      })
+
+      .finally(function(){
+
+        button.disabled = false;
+
+        button.innerText =
+          "Login";
+
+      });
+
+  }
+
+  catch(error){
+
+    console.error(
+      "JavaScript Login Error:",
+      error
+    );
+
+
+    status.className =
+      "error";
+
+    status.innerText =
+      "❌ JavaScript সমস্যা: " +
+      error.message;
+
+
+    button.disabled = false;
+
+    button.innerText =
+      "Login";
+
+  }
+
+}
+
+
+
+/* =====================================================
    LOGOUT
-========================= */
+===================================================== */
 
 function logout(){
 
-  auth.signOut();
+  if(!auth){
 
-}
+    return;
 
+  }
 
-/* =========================
-   STORE INFO LOAD
-========================= */
-
-function loadStoreInfo(){
-
-  db.collection("storeInfo")
-    .doc("main")
-    .get()
-
-    .then(function(doc){
-
-      if(!doc.exists) return;
-
-      const d = doc.data();
-
-      document.getElementById("storeName").value =
-        d.name || "";
-
-      document.getElementById("storeTagline").value =
-        d.tagline || "";
-
-      document.getElementById("storePhone").value =
-        d.phone || "";
-
-      document.getElementById("storeWhatsapp").value =
-        d.whatsapp || "";
-
-      document.getElementById("storeBkash").value =
-        d.bKash || "";
-
-      document.getElementById("storeNagad").value =
-        d.nagad || "";
-
-      document.getElementById("storeEmail").value =
-        d.email || "";
-
-      document.getElementById("storeAddress").value =
-        d.address || "";
-
-      document.getElementById("deliveryDhaka").value =
-        d.deliveryChargeDhaka || 60;
-
-      document.getElementById("deliveryOutside").value =
-        d.deliveryChargeOutside || 120;
-
-      document.getElementById("freeDelivery").value =
-        d.freeDeliveryThreshold || 2500;
-
-    })
-
+  auth
+    .signOut()
     .catch(function(error){
 
-      document.getElementById("storeStatus")
-        .innerText =
-        "তথ্য লোড হয়নি: " + error.message;
+      alert(
+        "Logout সমস্যা: " +
+        error.message
+      );
 
     });
 
 }
 
 
-/* =========================
+
+/* =====================================================
+   STORE INFO LOAD
+===================================================== */
+
+function loadStoreInfo(){
+
+  if(!db){
+
+    return;
+
+  }
+
+
+  db
+    .collection("storeInfo")
+    .doc("main")
+    .get()
+
+    .then(function(doc){
+
+      if(!doc.exists){
+
+        return;
+
+      }
+
+
+      const d =
+        doc.data() || {};
+
+
+      document
+        .getElementById("storeName")
+        .value =
+        d.name || "";
+
+
+      document
+        .getElementById("storeTagline")
+        .value =
+        d.tagline || "";
+
+
+      document
+        .getElementById("storePhone")
+        .value =
+        d.phone || "";
+
+
+      document
+        .getElementById("storeWhatsapp")
+        .value =
+        d.whatsapp || "";
+
+
+      document
+        .getElementById("storeBkash")
+        .value =
+        d.bKash || "";
+
+
+      document
+        .getElementById("storeNagad")
+        .value =
+        d.nagad || "";
+
+
+      document
+        .getElementById("storeEmail")
+        .value =
+        d.email || "";
+
+
+      document
+        .getElementById("storeAddress")
+        .value =
+        d.address || "";
+
+
+      document
+        .getElementById("deliveryDhaka")
+        .value =
+        d.deliveryChargeDhaka ?? 60;
+
+
+      document
+        .getElementById("deliveryOutside")
+        .value =
+        d.deliveryChargeOutside ?? 120;
+
+
+      document
+        .getElementById("freeDelivery")
+        .value =
+        d.freeDeliveryThreshold ?? 2500;
+
+    })
+
+    .catch(function(error){
+
+      document
+        .getElementById("storeStatus")
+        .className =
+        "error";
+
+      document
+        .getElementById("storeStatus")
+        .innerText =
+        "❌ তথ্য লোড হয়নি: " +
+        error.message;
+
+    });
+
+}
+
+
+
+/* =====================================================
    STORE INFO SAVE
-========================= */
+===================================================== */
 
 function saveStoreInfo(){
+
+  if(!db){
+
+    return;
+
+  }
+
 
   const data = {
 
     name:
-      document.getElementById("storeName").value.trim(),
+      document
+        .getElementById("storeName")
+        .value
+        .trim(),
 
     tagline:
-      document.getElementById("storeTagline").value.trim(),
+      document
+        .getElementById("storeTagline")
+        .value
+        .trim(),
 
     phone:
-      document.getElementById("storePhone").value.trim(),
+      document
+        .getElementById("storePhone")
+        .value
+        .trim(),
 
     whatsapp:
-      document.getElementById("storeWhatsapp").value.trim(),
+      document
+        .getElementById("storeWhatsapp")
+        .value
+        .trim(),
 
     bKash:
-      document.getElementById("storeBkash").value.trim(),
+      document
+        .getElementById("storeBkash")
+        .value
+        .trim(),
 
     nagad:
-      document.getElementById("storeNagad").value.trim(),
+      document
+        .getElementById("storeNagad")
+        .value
+        .trim(),
 
     email:
-      document.getElementById("storeEmail").value.trim(),
+      document
+        .getElementById("storeEmail")
+        .value
+        .trim(),
 
     address:
-      document.getElementById("storeAddress").value.trim(),
+      document
+        .getElementById("storeAddress")
+        .value
+        .trim(),
 
     deliveryChargeDhaka:
-      Number(document.getElementById("deliveryDhaka").value) || 0,
+      Number(
+        document
+          .getElementById("deliveryDhaka")
+          .value
+      ) || 0,
 
     deliveryChargeOutside:
-      Number(document.getElementById("deliveryOutside").value) || 0,
+      Number(
+        document
+          .getElementById("deliveryOutside")
+          .value
+      ) || 0,
 
     freeDeliveryThreshold:
-      Number(document.getElementById("freeDelivery").value) || 0
+      Number(
+        document
+          .getElementById("freeDelivery")
+          .value
+      ) || 0
 
   };
 
-  db.collection("storeInfo")
+
+  db
+    .collection("storeInfo")
     .doc("main")
-    .set(data,{merge:true})
+    .set(
+      data,
+      {merge:true}
+    )
 
     .then(function(){
 
-      document.getElementById("storeStatus")
-        .innerText =
+      const status =
+        document.getElementById(
+          "storeStatus"
+        );
+
+      status.className =
+        "success";
+
+      status.innerText =
         "✅ দোকানের তথ্য সংরক্ষণ হয়েছে।";
 
     })
 
     .catch(function(error){
 
-      document.getElementById("storeStatus")
-        .innerText =
-        "❌ সমস্যা: " + error.message;
+      const status =
+        document.getElementById(
+          "storeStatus"
+        );
+
+      status.className =
+        "error";
+
+      status.innerText =
+        "❌ সমস্যা: " +
+        error.message;
 
     });
 
 }
 
 
-/* =========================
+
+/* =====================================================
    PRODUCT SAVE
-========================= */
+===================================================== */
 
 function saveProduct(){
 
-  const id =
-    document.getElementById("productId").value.trim();
+  if(!db){
 
-  const name =
-    document.getElementById("pName").value.trim();
-
-  if(!name){
-
-    alert("পণ্যের নাম দিন।");
     return;
 
   }
 
+
+  const id =
+    document
+      .getElementById("productId")
+      .value
+      .trim();
+
+
+  const name =
+    document
+      .getElementById("pName")
+      .value
+      .trim();
+
+
+  if(!name){
+
+    alert(
+      "পণ্যের নাম দিন।"
+    );
+
+    return;
+
+  }
+
+
   const weightOptions = [];
 
-  const w1 =
-    document.getElementById("w1").value.trim();
 
-  const p1 =
-    Number(document.getElementById("p1").value) || 0;
+  /* WEIGHT 1 */
 
-  const o1 =
-    Number(document.getElementById("o1").value) || 0;
+  const weight1 =
+    document
+      .getElementById("w1")
+      .value
+      .trim();
 
-  if(w1){
+
+  const price1 =
+    Number(
+      document
+        .getElementById("p1")
+        .value
+    ) || 0;
+
+
+  const original1 =
+    Number(
+      document
+        .getElementById("o1")
+        .value
+    ) || 0;
+
+
+  if(weight1){
 
     weightOptions.push({
 
-      label:w1,
-      weightInGrams:
-        parseWeight(w1),
+      label:
+        weight1,
 
-      price:p1,
-      originalPrice:o1
+      weightInGrams:
+        parseWeight(weight1),
+
+      price:
+        price1,
+
+      originalPrice:
+        original1
 
     });
 
   }
 
-  const w2 =
-    document.getElementById("w2").value.trim();
 
-  const p2 =
-    Number(document.getElementById("p2").value) || 0;
+  /* WEIGHT 2 */
 
-  const o2 =
-    Number(document.getElementById("o2").value) || 0;
+  const weight2 =
+    document
+      .getElementById("w2")
+      .value
+      .trim();
 
-  if(w2){
+
+  const price2 =
+    Number(
+      document
+        .getElementById("p2")
+        .value
+    ) || 0;
+
+
+  const original2 =
+    Number(
+      document
+        .getElementById("o2")
+        .value
+    ) || 0;
+
+
+  if(weight2){
 
     weightOptions.push({
 
-      label:w2,
-      weightInGrams:
-        parseWeight(w2),
+      label:
+        weight2,
 
-      price:p2,
-      originalPrice:o2
+      weightInGrams:
+        parseWeight(weight2),
+
+      price:
+        price2,
+
+      originalPrice:
+        original2
 
     });
 
   }
+
 
   const product = {
 
     id:
       id || makeId(),
 
-    name:name,
+    name:
+      name,
 
     englishName:
-      document.getElementById("pEnglish").value.trim(),
+      document
+        .getElementById("pEnglish")
+        .value
+        .trim(),
 
     category:
-      document.getElementById("pCategory").value.trim(),
+      document
+        .getElementById("pCategory")
+        .value
+        .trim(),
 
     badge:
-      document.getElementById("pBadge").value.trim(),
+      document
+        .getElementById("pBadge")
+        .value
+        .trim(),
 
     isFeatured:
-      document.getElementById("pFeatured").checked,
+      document
+        .getElementById("pFeatured")
+        .checked,
 
     image:
-      document.getElementById("pImage").value.trim(),
+      document
+        .getElementById("pImage")
+        .value
+        .trim(),
 
     description:
-      document.getElementById("pDescription").value.trim(),
+      document
+        .getElementById("pDescription")
+        .value
+        .trim(),
 
     origin:
-      document.getElementById("pOrigin").value.trim(),
+      document
+        .getElementById("pOrigin")
+        .value
+        .trim(),
 
     features:
-      document.getElementById("pFeatures").value
+      document
+        .getElementById("pFeatures")
+        .value
         .split("\n")
-        .map(function(x){return x.trim();})
+        .map(function(x){
+
+          return x.trim();
+
+        })
         .filter(Boolean),
 
     inStock:
-      document.getElementById("pStock").checked,
+      document
+        .getElementById("pStock")
+        .checked,
 
     rating:
-      Number(document.getElementById("pRating").value) || 5,
+      Number(
+        document
+          .getElementById("pRating")
+          .value
+      ) || 5,
 
     reviewsCount:
-      Number(document.getElementById("pReviews").value) || 0,
+      Number(
+        document
+          .getElementById("pReviews")
+          .value
+      ) || 0,
 
-    weightOptions:weightOptions
+    weightOptions:
+      weightOptions
 
   };
 
-  db.collection("products")
+
+  db
+    .collection("products")
     .doc(product.id)
     .set(product)
 
     .then(function(){
 
-      document.getElementById("productStatus")
-        .innerText =
+      const status =
+        document.getElementById(
+          "productStatus"
+        );
+
+      status.className =
+        "success";
+
+      status.innerText =
         "✅ পণ্য Firebase-এ সংরক্ষণ হয়েছে।";
 
       clearForm();
+
       loadProducts();
 
     })
 
     .catch(function(error){
 
-      document.getElementById("productStatus")
-        .innerText =
-        "❌ সমস্যা: " + error.message;
+      const status =
+        document.getElementById(
+          "productStatus"
+        );
+
+      status.className =
+        "error";
+
+      status.innerText =
+        "❌ সমস্যা: " +
+        error.message;
 
     });
 
 }
 
 
-/* =========================
+
+/* =====================================================
    WEIGHT PARSER
-========================= */
+===================================================== */
 
 function parseWeight(value){
 
-  value = String(value).toLowerCase().trim();
+  value =
+    String(value)
+      .toLowerCase()
+      .trim();
+
 
   if(value.includes("kg")){
 
     const n =
-      parseFloat(value.replace("kg",""));
+      parseFloat(
+        value.replace("kg","")
+      );
 
-    return n * 1000;
+
+    return isNaN(n)
+      ? 0
+      : n * 1000;
 
   }
+
 
   if(value.includes("g")){
 
     const n =
-      parseFloat(value.replace("g",""));
+      parseFloat(
+        value.replace("g","")
+      );
 
-    return n;
+
+    return isNaN(n)
+      ? 0
+      : n;
 
   }
+
 
   return 0;
 
 }
 
 
-/* =========================
+
+/* =====================================================
    RANDOM ID
-========================= */
+===================================================== */
 
 function makeId(){
 
-  return "p" +
+  return (
+    "p" +
     Date.now().toString(36) +
     Math.random()
       .toString(36)
-      .substring(2,7);
+      .substring(2,7)
+  );
 
 }
 
 
-/* =========================
+
+/* =====================================================
    LOAD PRODUCTS
-========================= */
+===================================================== */
 
 function loadProducts(){
 
   const box =
-    document.getElementById("productsList");
+    document.getElementById(
+      "productsList"
+    );
 
-  box.innerHTML = "লোড হচ্ছে...";
 
-  db.collection("products")
+  if(!db){
+
+    box.innerHTML =
+      '<div class="error">Firebase চালু হয়নি।</div>';
+
+    return;
+
+  }
+
+
+  box.innerHTML =
+    '<div class="loading">পণ্য লোড হচ্ছে...</div>';
+
+
+  db
+    .collection("products")
     .get()
 
     .then(function(snapshot){
 
       box.innerHTML = "";
+
 
       if(snapshot.empty){
 
@@ -824,42 +1655,82 @@ function loadProducts(){
 
       }
 
+
+      let count = 0;
+
+
       snapshot.forEach(function(doc){
 
-        const p = doc.data();
+        const p =
+          doc.data() || {};
+
 
         if(p.id === "setup"){
+
           return;
+
         }
+
+
+        count++;
+
 
         let priceText = "";
 
-        if(Array.isArray(p.weightOptions)){
 
-          p.weightOptions.forEach(function(w){
+        if(
+          Array.isArray(
+            p.weightOptions
+          )
+        ){
 
-            priceText +=
-              w.label + " — ৳" +
-              w.price + "<br>";
+          p.weightOptions
+            .forEach(function(w){
 
-          });
+              priceText +=
+                escapeHtml(
+                  w.label || ""
+                ) +
+                " — ৳" +
+                Number(
+                  w.price || 0
+                ) +
+                "<br>";
+
+            });
 
         }
 
-        const div =
-          document.createElement("div");
 
-        div.className = "product";
+        const div =
+          document.createElement(
+            "div"
+          );
+
+
+        div.className =
+          "product";
+
+
+        const imageHtml =
+          p.image
+          ? `
+            <img
+              src="${escapeHtml(p.image)}"
+              alt="${escapeHtml(p.name || "")}"
+              onerror="this.style.display='none'"
+            >
+          `
+          : "";
+
 
         div.innerHTML = `
 
-          ${
-            p.image
-            ? `<img src="${escapeHtml(p.image)}">`
-            : ""
-          }
+          ${imageHtml}
 
-          <b>${escapeHtml(p.name || "")}</b>
+          <b>
+            ${escapeHtml(p.name || "")}
+          </b>
 
           <div class="small">
             ${escapeHtml(p.category || "")}
@@ -870,24 +1741,32 @@ function loadProducts(){
           </div>
 
           <div class="small">
+
             ${
               p.inStock
               ? "🟢 Stock আছে"
               : "🔴 Stock নেই"
             }
+
+            ${
+              p.isFeatured
+              ? " • ⭐ Featured"
+              : ""
+            }
+
           </div>
 
           <br>
 
           <button
             class="primary"
-            onclick='editProduct(${JSON.stringify(p)})'>
+            onclick='editProduct(${safeJson(p)})'>
             ✏️ Edit
           </button>
 
           <button
             class="danger"
-            onclick='deleteProduct("${escapeHtml(p.id)}")'>
+            onclick='deleteProduct("${escapeHtml(p.id || doc.id)}")'>
             🗑️ Delete
           </button>
 
@@ -895,169 +1774,135 @@ function loadProducts(){
 
         `;
 
+
         box.appendChild(div);
 
       });
+
+
+      if(count === 0){
+
+        box.innerHTML =
+          "<p>কোনো পণ্য নেই।</p>";
+
+      }
 
     })
 
     .catch(function(error){
 
       box.innerHTML =
+        '<div class="error">' +
         "❌ পণ্য লোড হয়নি: " +
-        error.message;
+        escapeHtml(error.message) +
+        "</div>";
 
     });
 
 }
 
 
-/* =========================
+
+/* =====================================================
    EDIT PRODUCT
-========================= */
+===================================================== */
 
 function editProduct(p){
 
-  document.getElementById("productId").value =
+  if(!p){
+
+    return;
+
+  }
+
+
+  document
+    .getElementById("productId")
+    .value =
     p.id || "";
 
-  document.getElementById("pName").value =
+
+  document
+    .getElementById("pName")
+    .value =
     p.name || "";
 
-  document.getElementById("pEnglish").value =
+
+  document
+    .getElementById("pEnglish")
+    .value =
     p.englishName || "";
 
-  document.getElementById("pCategory").value =
+
+  document
+    .getElementById("pCategory")
+    .value =
     p.category || "";
 
-  document.getElementById("pBadge").value =
+
+  document
+    .getElementById("pBadge")
+    .value =
     p.badge || "";
 
-  document.getElementById("pImage").value =
+
+  document
+    .getElementById("pImage")
+    .value =
     p.image || "";
 
-  document.getElementById("pDescription").value =
+
+  document
+    .getElementById("pDescription")
+    .value =
     p.description || "";
 
-  document.getElementById("pOrigin").value =
+
+  document
+    .getElementById("pOrigin")
+    .value =
     p.origin || "";
 
-  document.getElementById("pFeatures").value =
+
+  document
+    .getElementById("pFeatures")
+    .value =
     Array.isArray(p.features)
     ? p.features.join("\n")
     : "";
 
-  document.getElementById("pRating").value =
-    p.rating || 5;
 
-  document.getElementById("pReviews").value =
-    p.reviewsCount || 0;
+  document
+    .getElementById("pRating")
+    .value =
+    p.rating ?? 5;
 
-  document.getElementById("pStock").checked =
+
+  document
+    .getElementById("pReviews")
+    .value =
+    p.reviewsCount ?? 0;
+
+
+  document
+    .getElementById("pStock")
+    .checked =
     p.inStock !== false;
 
-  document.getElementById("pFeatured").checked =
+
+  document
+    .getElementById("pFeatured")
+    .checked =
     p.isFeatured === true;
 
-  const w =
+
+  const weights =
     Array.isArray(p.weightOptions)
     ? p.weightOptions
     : [];
 
-  if(w[0]){
 
-    document.getElementById("w1").value =
-      w[0].label || "";
-
-    document.getElementById("p1").value =
-      w[0].price || "";
-
-    document.getElementById("o1").value =
-      w[0].originalPrice || "";
-
-  }
-
-  if(w[1]){
-
-    document.getElementById("w2").value =
-      w[1].label || "";
-
-    document.getElementById("p2").value =
-      w[1].price || "";
-
-    document.getElementById("o2").value =
-      w[1].originalPrice || "";
-
-  }
-
-  document.getElementById("formTitle")
-    .innerText =
-    "✏️ পণ্য Edit করুন";
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-
-}
-
-
-/* =========================
-   DELETE PRODUCT
-========================= */
-
-function deleteProduct(id){
-
-  if(!confirm("এই পণ্যটি Delete করবেন?")){
-    return;
-  }
-
-  db.collection("products")
-    .doc(id)
-    .delete()
-
-    .then(function(){
-
-      alert("পণ্য Delete হয়েছে।");
-
-      loadProducts();
-
-    })
-
-    .catch(function(error){
-
-      alert(
-        "Delete সমস্যা: " +
-        error.message
-      );
-
-    });
-
-}
-
-
-/* =========================
-   CLEAR FORM
-========================= */
-
-function clearForm(){
-
-  document.getElementById("productId").value = "";
-
-  document.getElementById("pName").value = "";
-  document.getElementById("pEnglish").value = "";
-  document.getElementById("pCategory").value = "";
-  document.getElementById("pBadge").value = "";
-  document.getElementById("pImage").value = "";
-  document.getElementById("pDescription").value = "";
-  document.getElementById("pOrigin").value = "";
-  document.getElementById("pFeatures").value = "";
-
-  document.getElementById("pRating").value = "5";
-  document.getElementById("pReviews").value = "0";
-
-  document.getElementById("pStock").checked = true;
-  document.getElementById("pFeatured").checked = false;
+  /* Clear weight fields first */
 
   document.getElementById("w1").value = "";
   document.getElementById("p1").value = "";
@@ -1067,23 +1912,277 @@ function clearForm(){
   document.getElementById("p2").value = "";
   document.getElementById("o2").value = "";
 
-  document.getElementById("formTitle")
+
+  if(weights[0]){
+
+    document
+      .getElementById("w1")
+      .value =
+      weights[0].label || "";
+
+
+    document
+      .getElementById("p1")
+      .value =
+      weights[0].price ?? "";
+
+
+    document
+      .getElementById("o1")
+      .value =
+      weights[0].originalPrice ?? "";
+
+  }
+
+
+  if(weights[1]){
+
+    document
+      .getElementById("w2")
+      .value =
+      weights[1].label || "";
+
+
+    document
+      .getElementById("p2")
+      .value =
+      weights[1].price ?? "";
+
+
+    document
+      .getElementById("o2")
+      .value =
+      weights[1].originalPrice ?? "";
+
+  }
+
+
+  document
+    .getElementById("formTitle")
     .innerText =
-    "➕ নতুন পণ্য যোগ করুন";
+    "✏️ পণ্য Edit করুন";
+
+
+  window.scrollTo({
+
+    top:0,
+
+    behavior:"smooth"
+
+  });
 
 }
 
 
-/* =========================
+
+/* =====================================================
+   DELETE PRODUCT
+===================================================== */
+
+function deleteProduct(id){
+
+  if(!id){
+
+    return;
+
+  }
+
+
+  if(
+    !confirm(
+      "এই পণ্যটি Delete করবেন?"
+    )
+  ){
+
+    return;
+
+  }
+
+
+  if(!db){
+
+    return;
+
+  }
+
+
+  db
+    .collection("products")
+    .doc(id)
+    .delete()
+
+    .then(function(){
+
+      alert(
+        "✅ পণ্য Delete হয়েছে।"
+      );
+
+      loadProducts();
+
+    })
+
+    .catch(function(error){
+
+      alert(
+        "❌ Delete সমস্যা: " +
+        error.message
+      );
+
+    });
+
+}
+
+
+
+/* =====================================================
+   CLEAR PRODUCT FORM
+===================================================== */
+
+function clearForm(){
+
+  document
+    .getElementById("productId")
+    .value = "";
+
+
+  document
+    .getElementById("pName")
+    .value = "";
+
+
+  document
+    .getElementById("pEnglish")
+    .value = "";
+
+
+  document
+    .getElementById("pCategory")
+    .value = "";
+
+
+  document
+    .getElementById("pBadge")
+    .value = "";
+
+
+  document
+    .getElementById("pImage")
+    .value = "";
+
+
+  document
+    .getElementById("pDescription")
+    .value = "";
+
+
+  document
+    .getElementById("pOrigin")
+    .value = "";
+
+
+  document
+    .getElementById("pFeatures")
+    .value = "";
+
+
+  document
+    .getElementById("pRating")
+    .value = "5";
+
+
+  document
+    .getElementById("pReviews")
+    .value = "0";
+
+
+  document
+    .getElementById("pStock")
+    .checked = true;
+
+
+  document
+    .getElementById("pFeatured")
+    .checked = false;
+
+
+  document
+    .getElementById("w1")
+    .value = "";
+
+
+  document
+    .getElementById("p1")
+    .value = "";
+
+
+  document
+    .getElementById("o1")
+    .value = "";
+
+
+  document
+    .getElementById("w2")
+    .value = "";
+
+
+  document
+    .getElementById("p2")
+    .value = "";
+
+
+  document
+    .getElementById("o2")
+    .value = "";
+
+
+  document
+    .getElementById("formTitle")
+    .innerText =
+    "➕ নতুন পণ্য যোগ করুন";
+
+
+  const status =
+    document.getElementById(
+      "productStatus"
+    );
+
+
+  status.className = "";
+
+  status.innerText = "";
+
+}
+
+
+
+/* =====================================================
    LOAD ORDERS
-========================= */
+===================================================== */
 
 function loadOrders(){
 
   const box =
-    document.getElementById("ordersList");
+    document.getElementById(
+      "ordersList"
+    );
 
-  db.collection("orders")
+
+  if(!db){
+
+    box.innerHTML =
+      '<div class="error">Firebase চালু হয়নি।</div>';
+
+    return;
+
+  }
+
+
+  box.innerHTML =
+    '<div class="loading">অর্ডার লোড হচ্ছে...</div>';
+
+
+  db
+    .collection("orders")
     .get()
 
     .then(function(snapshot){
@@ -1097,38 +2196,60 @@ function loadOrders(){
 
       }
 
+
       box.innerHTML = "";
+
 
       snapshot.forEach(function(doc){
 
-        const o = doc.data();
+        const o =
+          doc.data() || {};
+
 
         const div =
-          document.createElement("div");
+          document.createElement(
+            "div"
+          );
 
-        div.className = "product";
+
+        div.className =
+          "product";
+
 
         div.innerHTML = `
 
-          <b>Order ID:</b>
+          <b>
+            Order ID:
+          </b>
+
           ${escapeHtml(doc.id)}
 
           <br><br>
 
-          <b>Customer:</b>
+          <b>
+            Customer:
+          </b>
+
           ${escapeHtml(o.name || "")}
 
           <br>
 
-          <b>Phone:</b>
+          <b>
+            Phone:
+          </b>
+
           ${escapeHtml(o.phone || "")}
 
           <br>
 
-          <b>Total:</b>
-          ৳${o.total || 0}
+          <b>
+            Total:
+          </b>
+
+          ৳${Number(o.total || 0)}
 
         `;
+
 
         box.appendChild(div);
 
@@ -1139,34 +2260,70 @@ function loadOrders(){
     .catch(function(error){
 
       box.innerHTML =
-        "অর্ডার লোড হয়নি: " +
-        error.message;
+        '<div class="error">' +
+        "❌ অর্ডার লোড হয়নি: " +
+        escapeHtml(error.message) +
+        "</div>";
 
     });
 
 }
 
 
-/* =========================
+
+/* =====================================================
+   SAFE JSON
+===================================================== */
+
+function safeJson(value){
+
+  return JSON.stringify(value)
+
+    .replace(/\\/g,"\\\\")
+    .replace(/'/g,"&#39;")
+    .replace(/</g,"\\u003c")
+    .replace(/>/g,"\\u003e");
+
+}
+
+
+
+/* =====================================================
    HTML ESCAPE
-========================= */
+===================================================== */
 
 function escapeHtml(text){
 
-  return String(text || "")
+  return String(text ?? "")
 
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+    .replace(
+      /&/g,
+      "&amp;"
+    )
 
-}// Firebase শুরু
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+    .replace(
+      /</g,
+      "&lt;"
+    )
+
+    .replace(
+      />/g,
+      "&gt;"
+    )
+
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+
+    .replace(
+      /'/g,
+      "&#039;"
+    );
+
+}
 
 </script>
-
 
 </body>
 </html>
