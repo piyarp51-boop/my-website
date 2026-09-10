@@ -648,7 +648,11 @@ button:active{
       onclick="loadProducts()">
       🔄 পণ্য Refresh
     </button>
-
+<button
+  class="primary"
+  onclick="importOldProducts()">
+  📥 ১৯টি পুরনো পণ্য Import করুন
+</button>
     <div id="productsList">
       <div class="loading">
         পণ্য লোড হচ্ছে...
@@ -1614,7 +1618,144 @@ function makeId(){
 /* =====================================================
    LOAD PRODUCTS
 ===================================================== */
+async function importOldProducts(){
 
+  if(!db){
+    alert("❌ Firebase চালু হয়নি।");
+    return;
+  }
+
+  if(!auth || !auth.currentUser){
+    alert("❌ আগে Admin Login করুন।");
+    return;
+  }
+
+  try{
+
+    const response = await fetch(
+      "https://piyarp51-boop.github.io/my-website/index.html?v=" + Date.now()
+    );
+
+    if(!response.ok){
+      throw new Error("index.html পাওয়া যাচ্ছে না");
+    }
+
+    const html = await response.text();
+
+    const marker = "fallbackProducts";
+
+    const markerPosition = html.indexOf(marker);
+
+    if(markerPosition === -1){
+      throw new Error("পুরনো পণ্যের তালিকা পাওয়া যায়নি");
+    }
+
+    const arrayStart = html.indexOf("[", markerPosition);
+
+    if(arrayStart === -1){
+      throw new Error("পণ্যের তালিকা শুরু পাওয়া যায়নি");
+    }
+
+    let depth = 0;
+    let quote = null;
+    let escaped = false;
+    let arrayEnd = -1;
+
+    for(let i = arrayStart; i < html.length; i++){
+
+      const ch = html[i];
+
+      if(quote){
+
+        if(escaped){
+          escaped = false;
+          continue;
+        }
+
+        if(ch === "\\"){
+          escaped = true;
+          continue;
+        }
+
+        if(ch === quote){
+          quote = null;
+        }
+
+        continue;
+      }
+
+      if(ch === '"' || ch === "'"){
+        quote = ch;
+        continue;
+      }
+
+      if(ch === "["){
+        depth++;
+      }
+
+      if(ch === "]"){
+        depth--;
+
+        if(depth === 0){
+          arrayEnd = i;
+          break;
+        }
+      }
+    }
+
+    if(arrayEnd === -1){
+      throw new Error("পণ্যের তালিকা শেষ পাওয়া যায়নি");
+    }
+
+    const arrayCode =
+      html.substring(arrayStart, arrayEnd + 1);
+
+    const products = Function(
+      '"use strict"; return (' +
+      arrayCode +
+      ')'
+    )();
+
+    if(!Array.isArray(products) || products.length === 0){
+      throw new Error("কোনো পণ্য পাওয়া যায়নি");
+    }
+
+    let count = 0;
+
+    for(const product of products){
+
+      if(!product || !product.id){
+        continue;
+      }
+
+      await db
+        .collection("products")
+        .doc(product.id)
+        .set(product);
+
+      count++;
+    }
+
+    alert(
+      "✅ সফল হয়েছে!\n\n" +
+      count +
+      "টি পণ্য Admin Panel-এ যোগ হয়েছে।"
+    );
+
+    loadProducts();
+
+  }catch(error){
+
+    console.error("Import Error:", error);
+
+    alert(
+      "❌ Import করতে সমস্যা হয়েছে:\n\n" +
+      error.message
+    );
+
+  }
+
+}
 function loadProducts(){
 
   const box =
